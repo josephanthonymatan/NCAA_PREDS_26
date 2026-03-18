@@ -1282,7 +1282,7 @@ def render_matchup_explorer(
                   <strong>${{team.name}}</strong>
                   <div class="button-meta">
                     <span>Elo ${{team.elo.toFixed(1)}}</span>
-                    <span class="pick-pill">${{selected ? "picked" : "ready"}}</span>
+                    <span class="pick-pill">${{selected ? "pick" : "ready"}}</span>
                   </div>
                 </button>
               `;
