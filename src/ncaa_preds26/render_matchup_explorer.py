@@ -476,9 +476,9 @@ def render_matchup_explorer(
             }}
 
             .main-bracket {{
-              grid-template-columns: minmax(0, 1fr) 208px minmax(0, 1fr);
+              grid-template-columns: minmax(0, 1fr) minmax(182px, 0.33fr) minmax(0, 1fr);
               align-items: stretch;
-              gap: 0.75rem;
+              gap: 0.6rem;
             }}
 
             .side-stack {{
@@ -486,20 +486,31 @@ def render_matchup_explorer(
               grid-template-rows: repeat(2, minmax(0, 1fr));
               gap: 0.9rem;
               align-items: stretch;
+              min-width: 0;
             }}
 
             .region {{
               display: grid;
               gap: 0.8rem;
               height: 100%;
+              min-width: 0;
             }}
 
             .region-title {{
-              display: flex;
-              justify-content: space-between;
-              gap: 1rem;
-              align-items: baseline;
-              flex-wrap: wrap;
+              display: grid;
+              gap: 0.35rem;
+              align-content: start;
+              min-width: 0;
+            }}
+
+            .region-title > div,
+            .region-title p {{
+              min-width: 0;
+            }}
+
+            .region-title p {{
+              max-width: 28ch;
+              line-height: 1.25;
             }}
 
             .region-title h2,
@@ -509,17 +520,18 @@ def render_matchup_explorer(
             }}
 
             .region-board {{
-              --card-height: 242px;
-              --lane-gap: 8px;
+              --card-height: 238px;
+              --lane-gap: 6px;
               display: grid;
-              grid-template-columns: repeat(4, minmax(136px, 1fr));
-              gap: 0.5rem;
+              grid-template-columns: repeat(4, minmax(0, 1fr));
+              gap: 0.42rem;
               align-items: stretch;
               overflow: visible;
+              min-width: 0;
             }}
 
             .region-board--mirrored {{
-              grid-template-columns: repeat(4, minmax(136px, 1fr));
+              grid-template-columns: repeat(4, minmax(0, 1fr));
             }}
 
             .round-column {{
@@ -528,6 +540,7 @@ def render_matchup_explorer(
               gap: var(--round-gap, var(--lane-gap));
               padding-top: var(--round-offset, 0px);
               align-content: start;
+              min-width: 0;
             }}
 
             .round-column[data-round="R64"] {{
@@ -567,6 +580,7 @@ def render_matchup_explorer(
               gap: 0.32rem;
               align-content: start;
               overflow: visible;
+              min-width: 0;
             }}
 
             .region-board .matchup,
@@ -592,6 +606,7 @@ def render_matchup_explorer(
             .center-slot {{
               display: flex;
               justify-content: center;
+              min-width: 0;
             }}
 
             .center-slot--title {{
@@ -599,7 +614,7 @@ def render_matchup_explorer(
             }}
 
             .center-slot .matchup {{
-              width: min(100%, 208px);
+              width: min(100%, 186px);
               height: var(--card-height);
               background: color-mix(in oklch, var(--screen) 96%, white 4%);
             }}
@@ -618,6 +633,7 @@ def render_matchup_explorer(
               grid-template-columns: minmax(0, 1fr) auto;
               gap: 0.35rem 0.75rem;
               color: var(--muted);
+              min-width: 0;
             }}
 
             .matchup-head span:last-child {{
@@ -627,6 +643,7 @@ def render_matchup_explorer(
             .team-list {{
               display: grid;
               gap: 0.28rem;
+              min-width: 0;
             }}
 
             .team-button {{
@@ -641,11 +658,13 @@ def render_matchup_explorer(
               gap: 0.12rem;
               cursor: pointer;
               transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
+              min-width: 0;
             }}
 
             .team-button strong {{
               font-size: 0.86rem;
               line-height: 1;
+              overflow-wrap: anywhere;
             }}
 
             .team-button span {{
@@ -685,6 +704,7 @@ def render_matchup_explorer(
               justify-content: space-between;
               align-items: center;
               gap: 0.6rem;
+              min-width: 0;
             }}
 
             .pick-pill {{
@@ -712,8 +732,8 @@ def render_matchup_explorer(
 
             .summary-line {{
               display: grid;
-              grid-template-columns: 5.75rem minmax(0, 1fr);
-              gap: 0.38rem;
+              grid-template-columns: 5.2rem minmax(0, 1fr);
+              gap: 0.28rem;
               align-items: center;
             }}
 
@@ -776,6 +796,26 @@ def render_matchup_explorer(
               outline-offset: 2px;
             }}
 
+            .region-board .summary-block {{
+              gap: 0.12rem;
+              padding-top: 0.2rem;
+            }}
+
+            .region-board .summary-line {{
+              grid-template-columns: minmax(0, 1fr) auto;
+              gap: 0.18rem;
+              align-items: start;
+            }}
+
+            .region-board .summary-line strong {{
+              font-size: 0.68rem;
+            }}
+
+            .region-board .summary-label {{
+              font-size: 0.5rem;
+              letter-spacing: 0.08em;
+            }}
+
             .finals {{
               height: 100%;
             }}
@@ -801,6 +841,10 @@ def render_matchup_explorer(
 
               .main-bracket {{
                 grid-template-columns: 1fr;
+              }}
+
+              .region-title p {{
+                max-width: 68ch;
               }}
 
               .center-stage {{
