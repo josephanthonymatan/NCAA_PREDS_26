@@ -33,6 +33,7 @@ class RenderBracketTests(unittest.TestCase):
             self.assertIn("Duke", html)
             self.assertIn("East sector", html)
             self.assertIn("press start to sim again", html)
+            self.assertIn('rel="icon"', html)
 
     def test_render_matchup_explorer_writes_local_interactive_artifact(self) -> None:
         output_root = ROOT / "data" / "output" / "2026"
@@ -70,6 +71,7 @@ class RenderBracketTests(unittest.TestCase):
             self.assertIn("Round of 64", html)
             self.assertIn("Raw Elo", html)
             self.assertIn("https://github.com/josephanthonymatan", html)
+            self.assertIn('rel="icon"', html)
 
     def test_render_rarest_bracket_writes_static_meta_artifact(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir_name:
@@ -90,6 +92,7 @@ class RenderBracketTests(unittest.TestCase):
             self.assertIn("most unlikely bracket", html.lower())
             self.assertIn("The games that made this bracket so unlikely", html)
             self.assertIn("Duke", html)
+            self.assertIn('rel="icon"', html)
 
 
 if __name__ == "__main__":

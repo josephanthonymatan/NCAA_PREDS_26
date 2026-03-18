@@ -10,6 +10,7 @@ import pandas as pd
 
 from .constants import DEFAULT_SEASON
 from .paths import output_dir, processed_dir
+from .pixel_icon import pixel_basketball_icon_data_url
 
 
 REGION_CLASSES = {
@@ -393,6 +394,7 @@ def _build_document(
     top_seed = leaderboard[0]
     season_label = escape(str(season))
     efficiency_note = "Torvik fallback" if efficiency_source.lower() == "torvik" else efficiency_source.title()
+    favicon_url = pixel_basketball_icon_data_url()
 
     return dedent(
         f"""
@@ -402,6 +404,7 @@ def _build_document(
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>{season_label} Monte Carlo Arcade Bracket</title>
+          <link rel="icon" type="image/svg+xml" href="{favicon_url}">
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">

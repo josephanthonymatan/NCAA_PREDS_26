@@ -8,6 +8,7 @@ import pandas as pd
 
 from .constants import DEFAULT_SEASON
 from .paths import output_dir, processed_dir
+from .pixel_icon import pixel_basketball_icon_data_url
 
 
 ROUND_LABELS = {
@@ -243,6 +244,7 @@ def render_matchup_explorer(
     github_handle = "@josephanthonymatan"
     x_url = "https://x.com/jam0xb797fd"
     x_handle = "@jam0xb797fd"
+    favicon_url = pixel_basketball_icon_data_url()
 
     document = dedent(
         f"""
@@ -252,6 +254,7 @@ def render_matchup_explorer(
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>{season} Bracket Lab</title>
+          <link rel="icon" type="image/svg+xml" href="{favicon_url}">
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
