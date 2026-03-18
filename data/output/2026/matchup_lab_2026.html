@@ -107,6 +107,43 @@
       font-size: 0.98rem;
     }
 
+    .hero-we {
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: help;
+    }
+
+    .hero-we-popup {
+      display: none;
+      position: absolute;
+      left: 0;
+      bottom: calc(100% + 0.38rem);
+      z-index: 40;
+      padding: 0.34rem 0.5rem;
+      border: 3px solid var(--outline);
+      background: color-mix(in oklch, var(--screen) 95%, white 5%);
+      box-shadow: 5px 5px 0 rgba(17, 24, 39, 0.16);
+      font-family: "Silkscreen", monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .hero-we:hover .hero-we-popup,
+    .hero-we:focus-visible .hero-we-popup {
+      display: block;
+    }
+
+    .hero-we:focus-visible {
+      outline: 3px solid color-mix(in oklch, var(--teal) 58%, white 42%);
+      outline-offset: 2px;
+    }
+
     .hero .eyebrow {
       margin: 0;
     }
@@ -861,7 +898,7 @@
           </nav>
         </div>
         <h1>Build a smarter bracket by playing the odds.</h1>
-        <p>We ran the 2026 tournament 100,000 times and tracked the results. Click teams to advance and build your bracket. Every card shows the selected team's Elo win probability, the simulated win rate when that matchup happened, and how often that exact matchup appeared in our simulations.</p>
+        <p><span class="hero-we" tabindex="0">We<span class="hero-we-popup">Me and Codex</span></span> ran the 2026 tournament 100,000 times and tracked the results. Click teams to advance and build your bracket. Every card shows the selected team's Elo win probability, the simulated win rate when that matchup happened, and how often that exact matchup appeared in our simulations.</p>
       </header>
 
       <section class="section-stack" id="app"></section>
@@ -1130,7 +1167,7 @@
             "Just click the team you think will win each game. Explore how probabilities change by creating different scenarios. You may want to compare simulated win percentage to public opinion to find sneaky underdogs."
         },
         {
-          question: "What does Monte Carlo simulation mean here?",
+          question: "What's a Monte Carlo simulation?",
           short: "Simulating 100,000 tournaments. Tap for more detail.",
           answer:
             `Monte Carlo simulations replay the entire tournament thousands of times, randomly—but realistically—based on each team's chance to win. It's widely used in fields like finance, risk management, and sports to capture possible outcomes beyond a single scenario. This site draws from ${formatCount(APP_DATA.simulationCount)} simulated tournaments.`
