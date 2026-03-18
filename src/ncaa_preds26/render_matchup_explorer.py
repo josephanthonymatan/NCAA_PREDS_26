@@ -348,6 +348,8 @@ def render_matchup_explorer(
             }}
 
             .faq-grid {{
+              position: relative;
+              z-index: 10;
               display: grid;
               grid-template-columns: repeat(4, minmax(0, 1fr));
               gap: 0.7rem;
@@ -356,6 +358,8 @@ def render_matchup_explorer(
 
             .faq-card {{
               position: relative;
+              z-index: 0;
+              overflow: visible;
               border: 3px solid var(--outline);
               background: color-mix(in oklch, var(--screen-alt) 90%, white 10%);
               padding: 0.65rem 0.75rem;
@@ -370,6 +374,7 @@ def render_matchup_explorer(
 
             .faq-card:hover,
             .faq-card:focus-within {{
+              z-index: 30;
               transform: translate(-1px, -1px);
               box-shadow: 7px 7px 0 rgba(17, 24, 39, 0.14);
               background: color-mix(in oklch, var(--gold) 22%, var(--screen));
@@ -378,6 +383,7 @@ def render_matchup_explorer(
             .faq-card summary {{
               list-style: none;
               cursor: help;
+              outline: none;
             }}
 
             .faq-card summary::-webkit-details-marker {{
@@ -401,6 +407,11 @@ def render_matchup_explorer(
               font-size: 0.73rem;
             }}
 
+            .faq-card summary:focus-visible {{
+              outline: 3px solid color-mix(in oklch, var(--teal) 58%, white 42%);
+              outline-offset: 2px;
+            }}
+
             .faq-card[open] summary span,
             .faq-card:hover summary span,
             .faq-card:focus-within summary span {{
@@ -411,7 +422,7 @@ def render_matchup_explorer(
               display: none;
               position: absolute;
               inset: calc(100% + 0.35rem) auto auto 0;
-              z-index: 12;
+              z-index: 50;
               width: min(320px, calc(100vw - 2.5rem));
               border: 3px solid var(--outline);
               background: color-mix(in oklch, var(--screen) 96%, white 4%);
@@ -419,6 +430,7 @@ def render_matchup_explorer(
               font-size: 0.84rem;
               line-height: 1.35;
               box-shadow: 7px 7px 0 rgba(17, 24, 39, 0.16);
+              pointer-events: none;
             }}
 
             .faq-card:hover .faq-answer,

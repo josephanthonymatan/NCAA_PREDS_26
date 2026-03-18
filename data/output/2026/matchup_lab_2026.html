@@ -104,6 +104,8 @@
     }
 
     .faq-grid {
+      position: relative;
+      z-index: 10;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0.7rem;
@@ -112,6 +114,8 @@
 
     .faq-card {
       position: relative;
+      z-index: 0;
+      overflow: visible;
       border: 3px solid var(--outline);
       background: color-mix(in oklch, var(--screen-alt) 90%, white 10%);
       padding: 0.65rem 0.75rem;
@@ -126,6 +130,7 @@
 
     .faq-card:hover,
     .faq-card:focus-within {
+      z-index: 30;
       transform: translate(-1px, -1px);
       box-shadow: 7px 7px 0 rgba(17, 24, 39, 0.14);
       background: color-mix(in oklch, var(--gold) 22%, var(--screen));
@@ -134,6 +139,7 @@
     .faq-card summary {
       list-style: none;
       cursor: help;
+      outline: none;
     }
 
     .faq-card summary::-webkit-details-marker {
@@ -157,6 +163,11 @@
       font-size: 0.73rem;
     }
 
+    .faq-card summary:focus-visible {
+      outline: 3px solid color-mix(in oklch, var(--teal) 58%, white 42%);
+      outline-offset: 2px;
+    }
+
     .faq-card[open] summary span,
     .faq-card:hover summary span,
     .faq-card:focus-within summary span {
@@ -167,7 +178,7 @@
       display: none;
       position: absolute;
       inset: calc(100% + 0.35rem) auto auto 0;
-      z-index: 12;
+      z-index: 50;
       width: min(320px, calc(100vw - 2.5rem));
       border: 3px solid var(--outline);
       background: color-mix(in oklch, var(--screen) 96%, white 4%);
@@ -175,6 +186,7 @@
       font-size: 0.84rem;
       line-height: 1.35;
       box-shadow: 7px 7px 0 rgba(17, 24, 39, 0.16);
+      pointer-events: none;
     }
 
     .faq-card:hover .faq-answer,
@@ -811,15 +823,15 @@
       const rawSelected = selectedTeam.team_id === teamA.team_id ? rawA : 100 - rawA;
       const rawLabel = summaryLabelMarkup(
         "Raw Elo",
-        "The implied win probability using only each team's Elo."
+        "This is the implied win probability using only each team's Elo."
       );
       const monteLabel = summaryLabelMarkup(
         "Monte Carlo",
-        `This is how the matchup went down over ${formatCount(APP_DATA.simulationCount)} simulated tournaments.`
+        `This is how the matchup went in our ${formatCount(APP_DATA.simulationCount)} simulated tournaments.`
       );
       const occurrenceLabel = summaryLabelMarkup(
-        "Likely?",
-        `This is how many times this exact matchup happened over ${formatCount(APP_DATA.simulationCount)} simulated tournaments.`
+        "Occurrence",
+        `This is how many times this exact matchup happened in our ${formatCount(APP_DATA.simulationCount)} simulated tournaments.`
       );
 
       if (game.round === "FirstFour") {
@@ -912,25 +924,25 @@
           question: "What is Elo?",
           short: "rating system",
           answer:
-            "Elo ratings measure team strength based on past performance. Originally made by Arpad Elo for chess, a higher Elo means a stronger team. I use the Elo difference between teams (along with polls, efficiency metrics, and preseason rankings) to calculate each matchup's win probability."
+            "Elo is a rating system created by Arpad Elo for chess. Higher Elo means a stronger expected team. Here I use the Elo gap between two teams to turn a matchup into an implied win probability."
         },
         {
           question: "How do I use this?",
           short: "click through the bracket",
           answer:
-            "Just click the team you think will win each game. If you skip a matchup, the higher-rated (Elo) team moves on automatically. Your bracket updates in real-time."
+            "Click a team to advance it. If you leave a game alone, the higher-Elo team advances by default. As you make picks, later rounds update automatically so only legal matchups stay on the board."
         },
         {
           question: "What is Monte Carlo simulation?",
           short: "100,000 saved tournament runs",
           answer:
-            `We stage and play out the entire tournament thousands (or millions) of times, randomly—but realistically—based on our model's estimation of each team's chance to win. Monte Carlo simulations are widely used in fields like finance, risk management, and sports to capture possible outcomes in dynamic scenarios. This page uses ${formatCount(APP_DATA.simulationCount)} generated trials.`
+            `A Monte Carlo simulation reruns the tournament many times with randomness weighted by each matchup's odds. People use it in finance, game theory, risk modeling, and sports to estimate a full range of outcomes instead of one fixed bracket. This page uses ${formatCount(APP_DATA.simulationCount)} saved runs.`
         },
         {
-          question: "So, who is going to win?",
+          question: "Who is going to win?",
           short: `${APP_DATA.hostCity} final`,
           answer:
-            `No crystal balls here—but according to our model, ${topTeam} took home the title ${topPct} of the time across ${formatCount(APP_DATA.simulationCount)} simulations. But even ${longshot} ${longshotText}. Anything can happen.`
+            `We can't predict the future. In this model, ${topTeam} won ${topPct} of the ${formatCount(APP_DATA.simulationCount)} saved tournaments. But even ${longshot} ${longshotText}. Dream on.`
         },
       ];
 
