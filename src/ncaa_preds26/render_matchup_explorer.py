@@ -447,6 +447,11 @@ def render_matchup_explorer(
               gap: 0.75rem;
             }}
 
+            .finals {{
+              grid-template-rows: auto 1fr;
+              min-height: 100%;
+            }}
+
             .playin-grid,
             .regions,
             .main-bracket {{
@@ -563,12 +568,13 @@ def render_matchup_explorer(
             }}
 
             .center-stage {{
-              display: grid;
-              grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
-              align-items: center;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-evenly;
               gap: 0.7rem;
               height: 100%;
               padding-block: 1.2rem;
+              min-height: 0;
             }}
 
             .center-slot {{
@@ -576,10 +582,23 @@ def render_matchup_explorer(
               justify-content: center;
             }}
 
+            .center-slot--title {{
+              margin-block: 0.15rem;
+            }}
+
             .center-slot .matchup {{
               width: min(100%, 208px);
               height: var(--card-height);
               background: color-mix(in oklch, var(--screen) 96%, white 4%);
+            }}
+
+            .center-slot .matchup-head {{
+              grid-template-columns: 1fr;
+              gap: 0.16rem;
+            }}
+
+            .center-slot .matchup-head span:last-child {{
+              text-align: left;
             }}
 
             .matchup-head {{
@@ -681,8 +700,8 @@ def render_matchup_explorer(
 
             .summary-line {{
               display: grid;
-              grid-template-columns: 4.7rem minmax(0, 1fr);
-              gap: 0.32rem;
+              grid-template-columns: 5.75rem minmax(0, 1fr);
+              gap: 0.38rem;
               align-items: center;
             }}
 
@@ -706,9 +725,14 @@ def render_matchup_explorer(
               border: 0;
               background: transparent;
               padding: 0;
+              width: 100%;
+              min-width: 0;
               color: inherit;
               text-align: left;
               cursor: help;
+              font-size: 0.6rem;
+              letter-spacing: 0.1em;
+              line-height: 1.08;
             }}
 
             .summary-label::after {{
