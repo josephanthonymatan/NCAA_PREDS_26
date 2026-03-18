@@ -705,6 +705,7 @@ def render_matchup_explorer(
 
             .team-button {{
               width: 100%;
+              position: relative;
               border: 3px solid var(--outline);
               background: color-mix(in oklch, var(--screen) 88%, white 12%);
               color: var(--ink);
@@ -716,15 +717,23 @@ def render_matchup_explorer(
               cursor: pointer;
               transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
               min-width: 0;
+              overflow: hidden;
+              --mc-fill: 100%;
+              --fill-strong: color-mix(in oklch, var(--gold) 52%, var(--screen));
+              --fill-soft: color-mix(in oklch, var(--gold) 16%, var(--screen));
             }}
 
             .team-button strong {{
+              position: relative;
+              z-index: 1;
               font-size: 0.86rem;
               line-height: 1;
               overflow-wrap: anywhere;
             }}
 
             .team-button span {{
+              position: relative;
+              z-index: 1;
               font-size: 0.72rem;
               color: color-mix(in oklch, var(--ink) 76%, var(--muted) 24%);
             }}
@@ -740,7 +749,21 @@ def render_matchup_explorer(
               box-shadow: 0 0 0 2px color-mix(in oklch, var(--gold) 34%, transparent), 5px 5px 0 rgba(17, 24, 39, 0.18);
             }}
 
+            .team-button.is-selected.has-mc-fill {{
+              background:
+                linear-gradient(
+                  90deg,
+                  var(--fill-strong) 0,
+                  var(--fill-strong) var(--mc-fill),
+                  var(--fill-soft) var(--mc-fill),
+                  color-mix(in oklch, var(--screen) 88%, white 12%) var(--mc-fill),
+                  color-mix(in oklch, var(--screen) 88%, white 12%) 100%
+                );
+            }}
+
             .team-button.is-underdog.is-selected {{
+              --fill-strong: color-mix(in oklch, var(--coral) 34%, var(--screen));
+              --fill-soft: color-mix(in oklch, var(--coral) 12%, var(--screen));
               background: color-mix(in oklch, var(--coral) 30%, var(--screen));
               border-color: color-mix(in oklch, var(--coral) 38%, var(--outline));
             }}
@@ -1155,7 +1178,23 @@ def render_matchup_explorer(
               `;
             }}
 
-            function teamButtonMarkup(team, selectedId, gameId, disabled) {{
+            function matchupRowForGame(game, teamA, teamB) {{
+              if (!teamA || !teamB || game.round === "FirstFour") {{
+                return null;
+              }}
+              return matchupLookup.get(normalizeKey(game.round, teamA, teamB)) ?? null;
+            }}
+
+            function matchupWinPct(matchup, teamId) {{
+              if (!matchup) {{
+                return null;
+              }}
+              return matchup.team_a_id_canon === teamId
+                ? matchup.team_a_win_pct_when_met
+                : matchup.team_b_win_pct_when_met;
+            }}
+
+            function teamButtonMarkup(team, selectedId, gameId, disabled, mcFillPct = null) {{
               if (!team) {{
                 return `
                   <button class="team-button is-empty" type="button" disabled>
@@ -1168,12 +1207,16 @@ def render_matchup_explorer(
               const otherEntrants = entrantsFor(gameLookup[gameId]).filter(Boolean);
               const favoriteId = otherEntrants.length === 2 ? preferredWinner(otherEntrants[0], otherEntrants[1]) : team.team_id;
               const upsetClass = favoriteId !== team.team_id ? " is-underdog" : "";
+              const clampedFill = mcFillPct === null ? null : Math.max(0, Math.min(Number(mcFillPct), 100));
+              const fillClass = selected && clampedFill !== null ? " has-mc-fill" : "";
+              const fillStyle = selected && clampedFill !== null ? `style="--mc-fill:${{clampedFill.toFixed(1)}}%;"` : "";
               return `
                 <button
-                  class="team-button${{selected ? " is-selected" : ""}}${{upsetClass}}"
+                  class="team-button${{selected ? " is-selected" : ""}}${{upsetClass}}${{fillClass}}"
                   type="button"
                   data-game-id="${{gameId}}"
                   data-team-id="${{team.team_id}}"
+                  ${{fillStyle}}
                   ${{disabled ? "disabled" : ""}}
                 >
                   <strong>${{team.name}}</strong>
@@ -1273,6 +1316,9 @@ def render_matchup_explorer(
             function renderMatchup(game) {{
               const [teamA, teamB] = entrantsFor(game);
               const selectedId = selections[game.id] ?? "";
+              const matchup = matchupRowForGame(game, teamA, teamB);
+              const teamAFillPct = matchupWinPct(matchup, teamA?.team_id);
+              const teamBFillPct = matchupWinPct(matchup, teamB?.team_id);
               const title = game.label ?? "";
               return `
                 <article class="matchup" data-round="${{game.round}}">
@@ -1281,8 +1327,8 @@ def render_matchup_explorer(
                     ${{title ? `<span>${{title}}</span>` : ""}}
                   </div>
                   <div class="team-list">
-                    ${{teamButtonMarkup(teamA, selectedId, game.id, !teamA)}}
-                    ${{teamButtonMarkup(teamB, selectedId, game.id, !teamB)}}
+                    ${{teamButtonMarkup(teamA, selectedId, game.id, !teamA, teamAFillPct)}}
+                    ${{teamButtonMarkup(teamB, selectedId, game.id, !teamB, teamBFillPct)}}
                   </div>
                   ${{summaryMarkup(game, teamA, teamB, selectedId)}}
                 </article>
