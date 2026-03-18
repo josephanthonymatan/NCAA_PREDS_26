@@ -65,10 +65,11 @@ class RenderBracketTests(unittest.TestCase):
 
             html = output_path.read_text(encoding="utf-8")
             self.assertEqual(output_path, destination)
-            self.assertIn("Build a bracket and inspect the odds for each game.", html)
+            self.assertIn("Build a smarter bracket by playing the odds.", html)
             self.assertIn("Michigan St.", html)
             self.assertIn("Round of 64", html)
             self.assertIn("Raw Elo", html)
+            self.assertIn("https://github.com/josephanthonymatan", html)
 
     def test_render_rarest_bracket_writes_static_meta_artifact(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir_name:

@@ -239,6 +239,10 @@ def render_matchup_explorer(
         )
 
     payload = _load_payload(processed_root, output_root, season)
+    github_url = "https://github.com/josephanthonymatan"
+    github_handle = "@josephanthonymatan"
+    x_url = "https://x.com/josephwithtime"
+    x_handle = "@josephwithtime"
 
     document = dedent(
         f"""
@@ -328,6 +332,14 @@ def render_matchup_explorer(
               margin-bottom: 0.9rem;
             }}
 
+            .hero-top {{
+              grid-column: 1 / -1;
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+              gap: 0.9rem;
+            }}
+
             .hero h1 {{
               grid-column: 1;
               font-family: "Silkscreen", monospace;
@@ -344,7 +356,52 @@ def render_matchup_explorer(
             }}
 
             .hero .eyebrow {{
-              grid-column: 1 / -1;
+              margin: 0;
+            }}
+
+            .social-links {{
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: flex-end;
+              gap: 0.45rem;
+            }}
+
+            .social-link {{
+              display: grid;
+              gap: 0.16rem;
+              min-width: 10.75rem;
+              padding: 0.42rem 0.62rem 0.5rem;
+              border: 3px solid var(--outline);
+              background: color-mix(in oklch, var(--screen) 92%, var(--gold) 8%);
+              color: var(--ink);
+              text-decoration: none;
+              box-shadow: 4px 4px 0 rgba(17, 24, 39, 0.14);
+              transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+            }}
+
+            .social-link:hover,
+            .social-link:focus-visible {{
+              transform: translate(-1px, -1px);
+              box-shadow: 6px 6px 0 rgba(17, 24, 39, 0.18);
+              background: color-mix(in oklch, var(--gold) 24%, var(--screen));
+            }}
+
+            .social-link:focus-visible {{
+              outline: 3px solid color-mix(in oklch, var(--teal) 58%, white 42%);
+              outline-offset: 2px;
+            }}
+
+            .social-link span {{
+              font-family: "Silkscreen", monospace;
+              text-transform: uppercase;
+              letter-spacing: 0.12em;
+              font-size: 0.54rem;
+              color: var(--muted);
+            }}
+
+            .social-link strong {{
+              font-size: 0.9rem;
+              line-height: 1.05;
             }}
 
             .faq-grid {{
@@ -825,14 +882,24 @@ def render_matchup_explorer(
                 grid-template-columns: 1fr;
               }}
 
+              .hero-top {{
+                flex-direction: column;
+                align-items: flex-start;
+              }}
+
               .hero h1,
               .hero p,
-              .hero .eyebrow {{
+              .hero .eyebrow,
+              .hero-top {{
                 grid-column: 1;
               }}
 
               .hero p {{
                 max-width: 68ch;
+              }}
+
+              .social-links {{
+                justify-content: flex-start;
               }}
 
               .faq-grid {{
@@ -878,6 +945,15 @@ def render_matchup_explorer(
 
               .hero p {{
                 font-size: 1rem;
+              }}
+
+              .social-links {{
+                width: 100%;
+              }}
+
+              .social-link {{
+                min-width: 0;
+                flex: 1 1 11rem;
               }}
 
               .chip {{
@@ -973,9 +1049,21 @@ def render_matchup_explorer(
           <main class="cabinet">
             <section class="screen">
               <header class="hero">
-                <p class="eyebrow">{season} bracket lab</p>
-                <h1>Build a bracket and inspect the odds for each game.</h1>
-                <p>Click teams to build your bracket. If you leave a game alone, the higher-Elo team advances by default. Every card shows the selected team's Elo win probability, the simulated win rate when that matchup happened, and how often that exact matchup appeared in 100,000 saved tournament runs.</p>
+                <div class="hero-top">
+                  <p class="eyebrow">{season} bracket lab</p>
+                  <nav class="social-links" aria-label="Profile links">
+                    <a class="social-link" href="{github_url}" target="_blank" rel="noreferrer">
+                      <span>GitHub</span>
+                      <strong>{github_handle}</strong>
+                    </a>
+                    <a class="social-link" href="{x_url}" target="_blank" rel="noreferrer">
+                      <span>X</span>
+                      <strong>{x_handle}</strong>
+                    </a>
+                  </nav>
+                </div>
+                <h1>Build a smarter bracket by playing the odds.</h1>
+                <p>We ran the 2026 tournament 100,000 times and tracked the results. Click teams to advance and build your bracket. Every card shows the selected team's Elo win probability, the simulated win rate when that matchup happened, and how often that exact matchup appeared in our simulations.</p>
               </header>
 
               <section class="section-stack" id="app"></section>
@@ -1292,7 +1380,7 @@ def render_matchup_explorer(
                       <span>${{region.name}} sector</span>
                       <h2>${{region.name}}</h2>
                     </div>
-                    <p>Click winners in this region. Later games only stay visible if they still fit the path you built.</p>
+                    <p>Click teams to explore possibilities.</p>
                   </div>
                   <div class="region-board ${{mirrored ? "region-board--mirrored" : "region-board--standard"}}">
                     ${{regionColumns}}
