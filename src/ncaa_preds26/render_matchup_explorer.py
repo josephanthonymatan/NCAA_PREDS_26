@@ -1156,7 +1156,7 @@ def render_matchup_explorer(
                   </nav>
                 </div>
                 <h1>Build a smarter bracket by playing the odds.</h1>
-                <p><span class="hero-we" tabindex="0">We<span class="hero-we-popup">Me and Codex</span></span> ran the 2026 tournament 100,000 times and tracked the results. Click teams to advance and build your bracket. Every card shows the selected team's Elo win probability, the simulated win rate when that matchup happened, and how often that exact matchup appeared in our simulations.</p>
+                <p><span class="hero-we" tabindex="0">We<span class="hero-we-popup">Me and Codex</span></span> ran the 2026 tournament 100,000 times and logged the results. Click teams to advance and build your bracket. Every card shows the selected team's Elo win probability, the simulated win rate when that matchup happened, and how often that exact matchup appeared in our simulations.</p>
               </header>
 
               <section class="section-stack" id="app"></section>
@@ -1414,13 +1414,13 @@ def render_matchup_explorer(
               const cards = [
                 {{
                   question: "What exactly is Elo?",
-                  short: "TLDR: Team strength rating. Tap for more detail.",
+                  short: "Team strength rating. Tap for more detail.",
                   answer:
                     "Elo ratings measure team strength based on past performance. Originally made by Arpad Elo for chess, a higher Elo means a stronger team. I use the Elo difference between teams to calculate each matchup's win probability."
                 }},
                 {{
                   question: "How do I make my picks?",
-                  short: "TLDR: Choose teams to advance. Tap for more detail.",
+                  short: "Choose teams to advance. Tap for more detail.",
                   answer:
                     "Just click the team you think will win each game. Explore how probabilities change by creating different scenarios. You may want to compare simulated win percentage to public opinion to find sneaky underdogs."
                 }},
@@ -1432,7 +1432,7 @@ def render_matchup_explorer(
                 }},
                 {{
                   question: "Who will win the whole thing?",
-                  short: "TLDR: We don't know. Tap for more detail.",
+                  short: "We don't know. Tap for more detail.",
                   answer:
                     `No crystal balls here—but according to this model, ${{topTeam}} took home the title ${{topPct}} of the time across ${{formatCount(APP_DATA.simulationCount)}} simulations. Even ${{longshot}} ${{longshotText}}. Anything can happen.`
                 }},
