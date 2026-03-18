@@ -241,8 +241,8 @@ def render_matchup_explorer(
     payload = _load_payload(processed_root, output_root, season)
     github_url = "https://github.com/josephanthonymatan"
     github_handle = "@josephanthonymatan"
-    x_url = "https://x.com/josephwithtime"
-    x_handle = "@josephwithtime"
+    x_url = "https://x.com/jam0xb797fd"
+    x_handle = "@jam0xb797fd"
 
     document = dedent(
         f"""
@@ -721,7 +721,7 @@ def render_matchup_explorer(
               --mc-fill: 100%;
               --fill-strong: color-mix(in oklch, var(--gold) 52%, var(--screen));
               --fill-soft: color-mix(in oklch, var(--gold) 16%, var(--screen));
-              --fill-edge: color-mix(in oklch, var(--gold) 62%, var(--outline) 38%);
+              --fill-edge: color-mix(in oklch, var(--gold) 78%, var(--ink) 22%);
             }}
 
             .team-button strong {{
@@ -765,23 +765,22 @@ def render_matchup_explorer(
             .team-button.is-selected.has-mc-fill::after {{
               content: "";
               position: absolute;
-              top: 0.2rem;
-              bottom: 0.2rem;
+              top: 0.22rem;
+              bottom: 0.22rem;
               left: clamp(0.2rem, var(--mc-fill), calc(100% - 0.2rem));
-              width: 3px;
+              width: 2px;
               transform: translateX(-50%);
               background: var(--fill-edge);
-              box-shadow: 0 0 0 1px color-mix(in oklch, white 28%, transparent);
-              opacity: 0.95;
+              opacity: 0.92;
               pointer-events: none;
             }}
 
             .team-button.is-underdog.is-selected {{
               --fill-strong: color-mix(in oklch, var(--coral) 34%, var(--screen));
               --fill-soft: color-mix(in oklch, var(--coral) 12%, var(--screen));
-              --fill-edge: color-mix(in oklch, var(--coral) 68%, var(--outline) 32%);
-              background: color-mix(in oklch, var(--coral) 30%, var(--screen));
+              --fill-edge: color-mix(in oklch, var(--coral) 78%, var(--ink) 22%);
               border-color: color-mix(in oklch, var(--coral) 38%, var(--outline));
+              box-shadow: 0 0 0 2px color-mix(in oklch, var(--coral) 28%, transparent), 5px 5px 0 rgba(17, 24, 39, 0.18);
             }}
 
             .team-button.is-empty {{
@@ -806,6 +805,10 @@ def render_matchup_explorer(
             }}
 
             .pick-pill {{
+              display: inline-flex;
+              flex-shrink: 0;
+              align-items: center;
+              justify-content: center;
               border: 2px solid color-mix(in oklch, var(--outline) 68%, transparent);
               padding: 0.08rem 0.35rem;
               font-family: "Silkscreen", monospace;
@@ -813,6 +816,8 @@ def render_matchup_explorer(
               letter-spacing: 0.08em;
               text-transform: uppercase;
               background: color-mix(in oklch, white 58%, transparent);
+              white-space: nowrap;
+              min-width: 5.9ch;
             }}
 
             .team-button:not(.is-selected) .pick-pill {{
