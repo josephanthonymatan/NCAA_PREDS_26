@@ -670,7 +670,7 @@ def render_matchup_explorer(
               background: color-mix(in oklch, var(--screen-alt) 92%, white 8%);
               padding: 0.5rem;
               display: grid;
-              grid-template-rows: auto auto minmax(0, 1fr);
+              grid-template-rows: auto minmax(0, 1fr) auto;
               gap: 0.32rem;
               align-content: start;
               overflow: visible;
@@ -736,7 +736,9 @@ def render_matchup_explorer(
 
             .team-list {{
               display: grid;
+              grid-template-rows: repeat(2, minmax(0, 1fr));
               gap: 0.28rem;
+              min-height: 0;
               min-width: 0;
             }}
 
@@ -750,9 +752,11 @@ def render_matchup_explorer(
               text-align: left;
               padding: 0.42rem;
               display: grid;
+              grid-template-rows: minmax(0, 1fr) auto;
               gap: 0.12rem;
               cursor: pointer;
               transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
+              min-height: 0;
               min-width: 0;
               overflow: hidden;
               --mc-fill: 100%;
@@ -764,9 +768,14 @@ def render_matchup_explorer(
             .team-button strong {{
               position: relative;
               z-index: 1;
+              display: -webkit-box;
               font-size: 0.86rem;
               line-height: 1;
+              min-height: 2em;
+              overflow: hidden;
               overflow-wrap: anywhere;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
             }}
 
             .team-button span {{
@@ -838,6 +847,7 @@ def render_matchup_explorer(
               justify-content: space-between;
               align-items: center;
               gap: 0.6rem;
+              margin-top: auto;
               min-width: 0;
             }}
 
