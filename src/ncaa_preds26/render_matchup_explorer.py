@@ -568,6 +568,15 @@ def render_matchup_explorer(
               gap: 0.9rem;
             }}
 
+            .desktop-flow {{
+              display: grid;
+              gap: 1rem;
+            }}
+
+            .mobile-flow {{
+              display: none;
+            }}
+
             .playin-grid {{
               grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }}
@@ -584,6 +593,89 @@ def render_matchup_explorer(
               gap: 0.9rem;
               align-items: stretch;
               min-width: 0;
+            }}
+
+            .mobile-round-nav {{
+              display: grid;
+              gap: 0.45rem;
+            }}
+
+            .mobile-round-tabs {{
+              display: flex;
+              gap: 0.45rem;
+              overflow-x: auto;
+              padding-bottom: 0.18rem;
+              scrollbar-width: none;
+              -webkit-overflow-scrolling: touch;
+            }}
+
+            .mobile-round-tabs::-webkit-scrollbar {{
+              display: none;
+            }}
+
+            .mobile-round-tab {{
+              flex: 0 0 auto;
+              border: 3px solid var(--outline);
+              background: color-mix(in oklch, var(--screen) 92%, white 8%);
+              color: var(--ink);
+              padding: 0.38rem 0.62rem;
+              font-family: "Silkscreen", monospace;
+              font-size: 0.56rem;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              box-shadow: 4px 4px 0 rgba(17, 24, 39, 0.1);
+              cursor: pointer;
+              white-space: nowrap;
+            }}
+
+            .mobile-round-tab.is-active {{
+              background: color-mix(in oklch, var(--gold) 24%, var(--screen));
+              border-color: color-mix(in oklch, var(--gold) 36%, var(--outline));
+              box-shadow: 0 0 0 2px color-mix(in oklch, var(--gold) 26%, transparent), 4px 4px 0 rgba(17, 24, 39, 0.12);
+            }}
+
+            .mobile-round-tab:focus-visible {{
+              outline: 3px solid color-mix(in oklch, var(--teal) 58%, white 42%);
+              outline-offset: 2px;
+            }}
+
+            .mobile-round-hint {{
+              color: var(--muted);
+              font-size: 0.78rem;
+            }}
+
+            .mobile-round-stage {{
+              display: grid;
+              gap: 0.85rem;
+              touch-action: pan-y;
+            }}
+
+            .mobile-round-panel {{
+              display: grid;
+              gap: 0.85rem;
+            }}
+
+            .mobile-region-group {{
+              border: 4px solid var(--outline);
+              background: color-mix(in oklch, var(--screen) 92%, var(--screen-alt) 8%);
+              padding: 0.8rem;
+              box-shadow: 6px 6px 0 rgba(17, 24, 39, 0.12);
+              display: grid;
+              gap: 0.7rem;
+            }}
+
+            .mobile-region-games {{
+              display: grid;
+              gap: 0.75rem;
+            }}
+
+            .mobile-region-group .matchup {{
+              height: auto;
+              min-height: auto;
+            }}
+
+            .mobile-flow .faq-grid {{
+              margin-bottom: 0;
             }}
 
             .region {{
@@ -1065,6 +1157,37 @@ def render_matchup_explorer(
                 min-height: auto;
               }}
 
+              .desktop-flow {{
+                display: none;
+              }}
+
+              .mobile-flow {{
+                display: grid;
+                gap: 1rem;
+              }}
+
+              .mobile-round-nav {{
+                position: sticky;
+                top: 0.1rem;
+                z-index: 12;
+                padding-bottom: 0.3rem;
+                background:
+                  linear-gradient(
+                    180deg,
+                    color-mix(in oklch, var(--screen) 96%, white 4%) 0%,
+                    color-mix(in oklch, var(--screen) 96%, white 4%) 78%,
+                    rgba(255, 255, 255, 0) 100%
+                  );
+              }}
+
+              .mobile-round-tab {{
+                font-size: 0.54rem;
+              }}
+
+              .mobile-round-hint {{
+                font-size: 0.74rem;
+              }}
+
               .faq-answer {{
                 inset: auto;
                 position: static;
@@ -1173,6 +1296,20 @@ def render_matchup_explorer(
             const regionLookup = Object.fromEntries(APP_DATA.regions.map((region) => [region.name, region]));
             const gameLookup = APP_DATA.games;
             const selections = Object.create(null);
+            const MOBILE_REGION_ORDER = ["East", "South", "West", "Midwest"];
+            const MOBILE_TAB_LABELS = {{
+              FirstFour: "First Four",
+              R64: "1st Round",
+              R32: "2nd Round",
+              Sweet16: "Sweet 16",
+              Elite8: "Elite 8",
+              Final4: "Final Four",
+              Championship: "Championship",
+            }};
+            const MOBILE_ROUND_ORDER = APP_DATA.playInIds.length
+              ? ["FirstFour", "R64", "R32", "Sweet16", "Elite8", "Final4", "Championship"]
+              : ["R64", "R32", "Sweet16", "Elite8", "Final4", "Championship"];
+            let activeMobileRound = MOBILE_ROUND_ORDER.includes("R64") ? "R64" : MOBILE_ROUND_ORDER[0];
             const matchupLookup = new Map(
               APP_DATA.matchups.map((row) => [
                 [row.round, row.team_a_id_canon, row.team_b_id_canon].join("|"),
@@ -1182,6 +1319,10 @@ def render_matchup_explorer(
 
             function roundLabel(roundName) {{
               return APP_DATA.roundLabels[roundName] ?? roundName;
+            }}
+
+            function mobileRoundLabel(roundName) {{
+              return MOBILE_TAB_LABELS[roundName] ?? roundLabel(roundName);
             }}
 
             function resolveSource(source) {{
@@ -1229,6 +1370,33 @@ def render_matchup_explorer(
                   selections[gameId] = preferredWinner(teamA, teamB);
                 }}
               }});
+            }}
+
+            function ensureActiveMobileRound() {{
+              if (!MOBILE_ROUND_ORDER.includes(activeMobileRound)) {{
+                activeMobileRound = MOBILE_ROUND_ORDER.includes("R64") ? "R64" : MOBILE_ROUND_ORDER[0];
+              }}
+            }}
+
+            function setActiveMobileRound(roundName) {{
+              if (!MOBILE_ROUND_ORDER.includes(roundName) || roundName === activeMobileRound) {{
+                return;
+              }}
+              activeMobileRound = roundName;
+              render();
+            }}
+
+            function shiftMobileRound(direction) {{
+              const currentIndex = MOBILE_ROUND_ORDER.indexOf(activeMobileRound);
+              if (currentIndex < 0) {{
+                return;
+              }}
+              const nextIndex = currentIndex + direction;
+              if (nextIndex < 0 || nextIndex >= MOBILE_ROUND_ORDER.length) {{
+                return;
+              }}
+              activeMobileRound = MOBILE_ROUND_ORDER[nextIndex];
+              render();
             }}
 
             function rawEloWinPct(teamA, teamB) {{
@@ -1480,6 +1648,134 @@ def render_matchup_explorer(
               return "";
             }}
 
+            function renderMobileTabs() {{
+              return `
+                <div class="mobile-round-nav">
+                  <div class="mobile-round-tabs" role="tablist" aria-label="Tournament rounds">
+                    ${{MOBILE_ROUND_ORDER.map((roundName) => `
+                      <button
+                        class="mobile-round-tab${{roundName === activeMobileRound ? " is-active" : ""}}"
+                        type="button"
+                        role="tab"
+                        aria-selected="${{roundName === activeMobileRound ? "true" : "false"}}"
+                        data-round-tab="${{roundName}}"
+                      >
+                        ${{mobileRoundLabel(roundName)}}
+                      </button>
+                    `).join("")}}
+                  </div>
+                  <p class="mobile-round-hint">Swipe or tap to move between rounds.</p>
+                </div>
+              `;
+            }}
+
+            function renderMobileRegionGroup(regionName, roundName) {{
+              const region = regionLookup[regionName];
+              const gameIds = region?.games?.[roundName] ?? [];
+              if (!gameIds.length) {{
+                return "";
+              }}
+              return `
+                <section class="mobile-region-group" data-region="${{regionName}}" data-round="${{roundName}}">
+                  <div class="region-title">
+                    <div>
+                      <span>${{region.name}} sector</span>
+                      <h2>${{region.name}}</h2>
+                    </div>
+                  </div>
+                  <div class="mobile-region-games">
+                    ${{gameIds.map((gameId) => renderMatchup(gameLookup[gameId])).join("")}}
+                  </div>
+                </section>
+              `;
+            }}
+
+            function renderMobileFinalFour() {{
+              return `
+                <section class="mobile-region-group" data-round="Final4">
+                  <div class="region-title">
+                    <div>
+                      <span>Final rounds</span>
+                      <h2>Final Four</h2>
+                    </div>
+                  </div>
+                  <div class="mobile-region-games">
+                    ${{APP_DATA.finalFourIds.map((gameId) => renderMatchup(gameLookup[gameId])).join("")}}
+                  </div>
+                </section>
+              `;
+            }}
+
+            function renderMobileChampionship() {{
+              return `
+                <section class="mobile-region-group" data-round="Championship">
+                  <div class="region-title">
+                    <div>
+                      <span>Final rounds</span>
+                      <h2>Championship</h2>
+                    </div>
+                  </div>
+                  <div class="mobile-region-games">
+                    ${{renderMatchup(gameLookup[APP_DATA.championshipId])}}
+                  </div>
+                </section>
+              `;
+            }}
+
+            function renderMobileRoundContent(roundName) {{
+              if (roundName === "FirstFour") {{
+                if (!APP_DATA.playInIds.length) {{
+                  return "";
+                }}
+                return `
+                  <section class="mobile-region-group" data-round="FirstFour">
+                    <div class="region-title">
+                      <div>
+                        <span>Play-in games</span>
+                        <h2>First Four</h2>
+                      </div>
+                    </div>
+                    <div class="mobile-region-games">
+                      ${{APP_DATA.playInIds.map((gameId) => renderMatchup(gameLookup[gameId])).join("")}}
+                    </div>
+                  </section>
+                `;
+              }}
+              if (roundName === "Final4") {{
+                return renderMobileFinalFour();
+              }}
+              if (roundName === "Championship") {{
+                return renderMobileChampionship();
+              }}
+              return MOBILE_REGION_ORDER
+                .map((regionName) => renderMobileRegionGroup(regionName, roundName))
+                .join("");
+            }}
+
+            function renderDesktopExperience() {{
+              return `
+                <section class="desktop-flow">
+                  ${{renderFaqs()}}
+                  ${{renderPlayIns()}}
+                  ${{renderBracketStage()}}
+                </section>
+              `;
+            }}
+
+            function renderMobileExperience() {{
+              return `
+                <section class="mobile-flow">
+                  ${{renderMobileTabs()}}
+                  <div class="mobile-round-stage" data-mobile-round-stage data-active-round="${{activeMobileRound}}">
+                    <section class="mobile-round-panel">
+                      ${{renderMobileRoundContent(activeMobileRound)}}
+                    </section>
+                  </div>
+                  ${{renderFaqs()}}
+                </section>
+              `;
+            }}
+
             function renderRegionPanel(regionName, mirrored = false) {{
               const region = regionLookup[regionName];
               const roundOrder = mirrored
@@ -1552,13 +1848,41 @@ def render_matchup_explorer(
 
             function render() {{
               ensureSelections();
-              app.innerHTML = [renderFaqs(), renderPlayIns(), renderBracketStage()].join("");
+              ensureActiveMobileRound();
+              app.innerHTML = [renderDesktopExperience(), renderMobileExperience()].join("");
               app.querySelectorAll("[data-game-id][data-team-id]").forEach((button) => {{
                 button.addEventListener("click", () => {{
                   selections[button.dataset.gameId] = button.dataset.teamId;
                   render();
                 }});
               }});
+              app.querySelectorAll("[data-round-tab]").forEach((button) => {{
+                button.addEventListener("click", () => {{
+                  setActiveMobileRound(button.dataset.roundTab);
+                }});
+              }});
+              const mobileStage = app.querySelector("[data-mobile-round-stage]");
+              if (mobileStage) {{
+                let touchStartX = 0;
+                let touchStartY = 0;
+                mobileStage.addEventListener("touchstart", (event) => {{
+                  const touch = event.changedTouches[0];
+                  touchStartX = touch.clientX;
+                  touchStartY = touch.clientY;
+                }}, {{ passive: true }});
+                mobileStage.addEventListener("touchend", (event) => {{
+                  const touch = event.changedTouches[0];
+                  const deltaX = touch.clientX - touchStartX;
+                  const deltaY = touch.clientY - touchStartY;
+                  if (Math.abs(deltaX) < 48) {{
+                    return;
+                  }}
+                  if (Math.abs(deltaX) <= Math.abs(deltaY) + 16) {{
+                    return;
+                  }}
+                  shiftMobileRound(deltaX < 0 ? 1 : -1);
+                }}, {{ passive: true }});
+              }}
             }}
 
             render();

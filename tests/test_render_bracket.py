@@ -72,6 +72,19 @@ class RenderBracketTests(unittest.TestCase):
             self.assertIn("Raw Elo", html)
             self.assertIn("https://github.com/josephanthonymatan", html)
             self.assertIn('rel="icon"', html)
+            self.assertIn('const MOBILE_ROUND_ORDER = APP_DATA.playInIds.length', html)
+            self.assertIn('let activeMobileRound = MOBILE_ROUND_ORDER.includes("R64") ? "R64" : MOBILE_ROUND_ORDER[0];', html)
+            self.assertIn('data-active-round="${activeMobileRound}"', html)
+            self.assertIn('"FirstFour", "R64", "R32", "Sweet16", "Elite8", "Final4", "Championship"', html)
+            self.assertIn('data-round-tab="${roundName}"', html)
+            self.assertIn("1st Round", html)
+            east_index = html.index('const MOBILE_REGION_ORDER = ["East", "South", "West", "Midwest"]')
+            south_index = html.index('"South"', east_index)
+            west_index = html.index('"West"', south_index)
+            midwest_index = html.index('"Midwest"', west_index)
+            self.assertLess(east_index, south_index)
+            self.assertLess(south_index, west_index)
+            self.assertLess(west_index, midwest_index)
 
     def test_render_rarest_bracket_writes_static_meta_artifact(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir_name:
