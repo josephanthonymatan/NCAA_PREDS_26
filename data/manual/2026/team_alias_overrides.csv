@@ -1,0 +1,23 @@
+source,source_name,team_id_canon,display_name
+elo,California Baptist,cal_baptist,Cal Baptist
+elo,Iowa State,iowa_st,Iowa St.
+elo,Kennesaw State,kennesaw_st,Kennesaw St.
+efficiency,LIU,long_island,Long Island
+efficiency,McNeese St.,mcneese,McNeese
+elo,Miami (OH),mia_oh,MIA OH
+efficiency,Miami OH,mia_oh,MIA OH
+elo,Michigan State,michigan_st,Michigan St.
+elo,North Dakota State,n_dakota_st,N Dakota St.
+efficiency,North Dakota St.,n_dakota_st,N Dakota St.
+elo,North Carolina State,nc_state,NC State
+efficiency,Ohio St.,ohio_state,Ohio State
+elo,Prairie View A&M,pvamu,PVAMU
+efficiency,Prairie View A&M,pvamu,PVAMU
+elo,Queens,queens_nc,Queens (N.C.)
+efficiency,Queens,queens_nc,Queens (N.C.)
+elo,Saint Mary's College,saint_marys,Saint Mary's
+elo,Saint John's,st_johns,St. John's
+elo,Tennessee State,tennessee_st,Tennessee St.
+efficiency,Utah St.,utah_st,Utah St.
+elo,Utah State,utah_st,Utah St.
+elo,Wright State,wright_st,Wright St.

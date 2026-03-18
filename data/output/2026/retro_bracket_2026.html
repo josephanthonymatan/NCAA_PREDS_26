@@ -1,0 +1,1370 @@
+<!doctype html>
+        <html lang="en">
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>2026 Monte Carlo Arcade Bracket</title>
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+          <style>
+            :root {
+              --bg: oklch(18% 0.03 233);
+              --bg-deep: oklch(13% 0.02 236);
+              --screen: oklch(93% 0.03 85);
+              --screen-shadow: oklch(81% 0.05 85);
+              --ink: oklch(27% 0.05 241);
+              --muted: oklch(48% 0.04 240);
+              --gold: oklch(80% 0.16 92);
+              --gold-deep: oklch(64% 0.14 86);
+              --east: oklch(69% 0.18 28);
+              --west: oklch(74% 0.16 185);
+              --south: oklch(82% 0.16 103);
+              --midwest: oklch(70% 0.14 250);
+              --cabinet: oklch(29% 0.05 28);
+              --cabinet-edge: oklch(39% 0.08 34);
+              --outline: oklch(23% 0.04 244);
+              --shadow: rgba(17, 24, 39, 0.26);
+            }
+
+            * {
+              box-sizing: border-box;
+            }
+
+            body {
+              margin: 0;
+              min-height: 100vh;
+              font-family: "Chakra Petch", sans-serif;
+              color: var(--ink);
+              background:
+                radial-gradient(circle at top, color-mix(in oklch, var(--gold) 18%, transparent), transparent 36%),
+                linear-gradient(180deg, color-mix(in oklch, var(--cabinet) 82%, var(--bg)) 0%, var(--bg-deep) 100%);
+              padding: clamp(1rem, 2vw, 2rem);
+            }
+
+            body::before {
+              content: "";
+              position: fixed;
+              inset: 0;
+              background:
+                linear-gradient(135deg, transparent 0 45%, color-mix(in oklch, var(--gold) 12%, transparent) 45% 55%, transparent 55% 100%),
+                radial-gradient(circle at 20% 10%, color-mix(in oklch, var(--east) 20%, transparent), transparent 24%),
+                radial-gradient(circle at 80% 0%, color-mix(in oklch, var(--west) 20%, transparent), transparent 20%);
+              opacity: 0.35;
+              pointer-events: none;
+            }
+
+            .cabinet {
+              position: relative;
+              max-width: 1800px;
+              margin: 0 auto;
+              border: 6px solid var(--cabinet-edge);
+              background: linear-gradient(180deg, color-mix(in oklch, var(--cabinet) 76%, var(--gold) 24%), var(--cabinet));
+              padding: clamp(1rem, 2vw, 1.5rem);
+              box-shadow:
+                0 22px 50px var(--shadow),
+                0 0 0 6px color-mix(in oklch, var(--cabinet-edge) 70%, var(--outline) 30%);
+            }
+
+            .screen {
+              position: relative;
+              overflow: hidden;
+              background: linear-gradient(180deg, color-mix(in oklch, var(--screen) 85%, var(--gold) 15%), var(--screen));
+              border: 5px solid var(--outline);
+              padding: clamp(0.8rem, 1.4vw, 1.35rem);
+              box-shadow:
+                inset 0 0 0 3px color-mix(in oklch, var(--screen-shadow) 70%, var(--outline) 30%),
+                inset 0 0 60px color-mix(in oklch, var(--gold) 10%, transparent);
+            }
+
+            .screen::before {
+              content: "";
+              position: absolute;
+              inset: 0;
+              background:
+                repeating-linear-gradient(
+                  180deg,
+                  rgba(255, 255, 255, 0.0) 0 6px,
+                  rgba(22, 34, 62, 0.085) 6px 8px
+                );
+              mix-blend-mode: multiply;
+              pointer-events: none;
+            }
+
+            .masthead {
+              position: relative;
+              display: grid;
+              grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+              gap: 1rem;
+              align-items: end;
+              margin-bottom: 1.5rem;
+            }
+
+            .title-block {
+              display: grid;
+              gap: 0.6rem;
+            }
+
+            .title-block__eyebrow,
+            .region__kicker,
+            .slot__eyebrow,
+            .boss-board__eyebrow {
+              font-family: "Silkscreen", monospace;
+              font-size: 0.72rem;
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+            }
+
+            .title-block__eyebrow {
+              color: var(--muted);
+            }
+
+            h1,
+            h2,
+            h3,
+            p {
+              margin: 0;
+            }
+
+            h1 {
+              font-family: "Silkscreen", monospace;
+              font-size: clamp(1.8rem, 3.6vw, 4rem);
+              line-height: 0.95;
+              max-width: 12ch;
+              text-transform: uppercase;
+              text-shadow: 4px 4px 0 color-mix(in oklch, var(--gold) 30%, transparent);
+            }
+
+            .title-block__subhead {
+              max-width: 58ch;
+              color: color-mix(in oklch, var(--ink) 76%, var(--muted) 24%);
+              font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+            }
+
+            .marquee {
+              display: grid;
+              gap: 0.55rem;
+              justify-items: stretch;
+            }
+
+            .marquee__board {
+              display: grid;
+              gap: 0.55rem;
+              border: 4px solid var(--outline);
+              padding: 0.9rem;
+              background: color-mix(in oklch, var(--gold) 20%, var(--screen));
+              box-shadow: 6px 6px 0 color-mix(in oklch, var(--gold-deep) 40%, transparent);
+            }
+
+            .marquee__line {
+              display: flex;
+              justify-content: space-between;
+              gap: 0.75rem;
+              font-weight: 600;
+              color: color-mix(in oklch, var(--ink) 88%, var(--muted) 12%);
+            }
+
+            .marquee__line span:last-child {
+              color: color-mix(in oklch, var(--gold-deep) 72%, var(--ink) 28%);
+            }
+
+            .arena {
+              display: grid;
+              grid-template-columns: minmax(0, 1.42fr) minmax(220px, 0.52fr) minmax(0, 1.42fr);
+              gap: 0.65rem;
+              align-items: stretch;
+            }
+
+            .rail {
+              display: grid;
+              gap: 1rem;
+            }
+
+            .region {
+              display: grid;
+              gap: 0.8rem;
+              border: 4px solid var(--outline);
+              padding: 0.75rem;
+              background: color-mix(in oklch, var(--screen) 88%, transparent);
+              box-shadow: 7px 7px 0 var(--shadow);
+            }
+
+            .region--east {
+              background: color-mix(in oklch, var(--east) 10%, var(--screen));
+            }
+
+            .region--west {
+              background: color-mix(in oklch, var(--west) 10%, var(--screen));
+            }
+
+            .region--south {
+              background: color-mix(in oklch, var(--south) 14%, var(--screen));
+            }
+
+            .region--midwest {
+              background: color-mix(in oklch, var(--midwest) 10%, var(--screen));
+            }
+
+            .region__headline {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              gap: 0.75rem;
+              align-items: center;
+            }
+
+            .region h2 {
+              font-size: clamp(1.25rem, 1.6vw, 1.9rem);
+              text-transform: uppercase;
+            }
+
+            .region__badge {
+              border: 3px solid var(--outline);
+              background: color-mix(in oklch, var(--gold) 16%, var(--screen));
+              padding: 0.35rem 0.55rem;
+              font-family: "Silkscreen", monospace;
+              font-size: 0.66rem;
+              text-transform: uppercase;
+            }
+
+            .region__legend {
+              display: grid;
+              grid-template-columns: repeat(4, minmax(0, 1fr));
+              gap: 0.5rem;
+              font-size: 0.72rem;
+              text-transform: uppercase;
+              color: var(--muted);
+            }
+
+            .region__grid {
+              display: grid;
+              grid-template-columns: minmax(150px, 1.48fr) minmax(104px, 1fr) minmax(104px, 1fr) minmax(104px, 1fr);
+              grid-template-rows: repeat(8, minmax(76px, auto));
+              gap: 0.5rem;
+              min-height: 670px;
+            }
+
+            .slot {
+              position: relative;
+              display: grid;
+              gap: 0.35rem;
+              border: 3px solid var(--outline);
+              background: color-mix(in oklch, var(--screen) 90%, white 10%);
+              padding: 0.55rem;
+              box-shadow: 5px 5px 0 var(--shadow);
+              grid-column: var(--column);
+              grid-row: var(--row-start) / span var(--row-span);
+              align-self: center;
+              min-width: 0;
+            }
+
+            .slot::after {
+              content: "";
+              position: absolute;
+              inset: auto -0.72rem auto 100%;
+              top: 50%;
+              width: 0.72rem;
+              height: 4px;
+              background: var(--outline);
+              transform: translateY(-50%);
+            }
+
+            .slot:nth-last-child(-n + 1)::after,
+            .slot[style*="--column: 4"]::after {
+              display: none;
+            }
+
+            .slot__headline {
+              display: flex;
+              align-items: center;
+              gap: 0.55rem;
+              min-width: 0;
+            }
+
+            .slot h3 {
+              font-size: 0.92rem;
+              text-transform: uppercase;
+              line-height: 1.05;
+            }
+
+            .slot__metric {
+              font-weight: 700;
+              line-height: 1.15;
+              color: color-mix(in oklch, var(--ink) 84%, var(--muted) 16%);
+            }
+
+            .slot__subtext,
+            .slot__note {
+              font-size: 0.68rem;
+              line-height: 1.2;
+              color: color-mix(in oklch, var(--muted) 76%, var(--ink) 24%);
+            }
+
+            .duel-row {
+              display: grid;
+              grid-template-columns: auto minmax(0, 1fr) auto;
+              gap: 0.35rem;
+              align-items: center;
+              padding: 0.2rem 0.25rem;
+              border: 2px solid transparent;
+              min-width: 0;
+            }
+
+            .duel-row--favorite {
+              background: color-mix(in oklch, var(--gold) 18%, var(--screen));
+              border-color: var(--outline);
+            }
+
+            .duel-row__name {
+              font-weight: 700;
+              line-height: 1.05;
+              min-width: 0;
+              font-size: 0.88rem;
+              overflow-wrap: anywhere;
+            }
+
+            .duel-row__stat {
+              font-family: "Silkscreen", monospace;
+              font-size: 0.62rem;
+            }
+
+            .seed-chip {
+              display: inline-grid;
+              place-items: center;
+              min-width: 1.65rem;
+              height: 1.65rem;
+              padding: 0 0.25rem;
+              border: 2px solid var(--outline);
+              font-family: "Silkscreen", monospace;
+              font-size: 0.65rem;
+              background: color-mix(in oklch, var(--screen) 70%, var(--gold) 30%);
+            }
+
+            .boss-board {
+              display: grid;
+              gap: 1rem;
+              border: 4px solid var(--outline);
+              background:
+                linear-gradient(180deg, color-mix(in oklch, var(--gold) 18%, var(--screen)), color-mix(in oklch, var(--gold) 5%, var(--screen)));
+              padding: 0.85rem;
+              box-shadow: 9px 9px 0 var(--shadow);
+              align-content: start;
+              height: 100%;
+            }
+
+            .boss-board__hero {
+              display: grid;
+              gap: 0.7rem;
+              border: 4px solid var(--outline);
+              padding: 1rem;
+              background: color-mix(in oklch, var(--gold) 18%, var(--screen));
+            }
+
+            .boss-board__hero h2 {
+              font-size: clamp(1.4rem, 2vw, 2.35rem);
+              text-transform: uppercase;
+            }
+
+            .boss-board__hero p {
+              color: color-mix(in oklch, var(--ink) 85%, var(--muted) 15%);
+            }
+
+            .boss-board__badge {
+              width: fit-content;
+              border: 3px solid var(--outline);
+              padding: 0.35rem 0.55rem;
+              font-family: "Silkscreen", monospace;
+              font-size: 0.75rem;
+              background: color-mix(in oklch, var(--gold) 26%, var(--screen));
+            }
+
+            .leaderboard {
+              display: grid;
+              gap: 0.65rem;
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+
+            .leaderboard__row {
+              display: grid;
+              grid-template-columns: auto minmax(0, 1fr) auto;
+              align-items: center;
+              gap: 0.7rem;
+              padding: 0.55rem 0.7rem;
+              border: 3px solid var(--outline);
+              background: color-mix(in oklch, var(--screen) 88%, white 12%);
+            }
+
+            .leaderboard__rank {
+              font-family: "Silkscreen", monospace;
+              font-size: 0.75rem;
+              color: var(--gold-deep);
+            }
+
+            .leaderboard__name {
+              font-weight: 700;
+            }
+
+            .leaderboard__stat {
+              font-family: "Silkscreen", monospace;
+              font-size: 0.75rem;
+            }
+
+            .showdowns {
+              display: grid;
+              gap: 0.75rem;
+            }
+
+            .showdown {
+              display: grid;
+              gap: 0.55rem;
+              border: 3px solid var(--outline);
+              background: color-mix(in oklch, var(--screen) 88%, var(--gold) 12%);
+              padding: 0.75rem;
+            }
+
+            .showdown__vs {
+              display: flex;
+              justify-content: space-between;
+              gap: 0.5rem;
+              font-family: "Silkscreen", monospace;
+              font-size: 0.68rem;
+              text-transform: uppercase;
+            }
+
+            .showdown__divider {
+              color: var(--muted);
+            }
+
+            .showdown__teams {
+              display: grid;
+              gap: 0.55rem;
+            }
+
+            .showdown__teams div {
+              display: grid;
+              gap: 0.15rem;
+            }
+
+            .showdown__teams span,
+            .showdown__favorite,
+            .boss-footer {
+              color: color-mix(in oklch, var(--ink) 80%, var(--muted) 20%);
+              font-size: 0.84rem;
+            }
+
+            .blink {
+              animation: blink 1.2s steps(2, end) infinite;
+            }
+
+            @keyframes blink {
+              0%, 49% { opacity: 1; }
+              50%, 100% { opacity: 0.45; }
+            }
+
+            @media (max-width: 1500px) {
+              .arena {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+              }
+
+              .boss-board {
+                grid-column: 1 / -1;
+                order: -1;
+                height: auto;
+              }
+            }
+
+            @media (max-width: 980px) {
+              .arena {
+                grid-template-columns: 1fr;
+              }
+
+              .masthead {
+                grid-template-columns: 1fr;
+              }
+
+              .rail {
+                grid-template-columns: 1fr;
+              }
+
+              .region__legend {
+                display: none;
+              }
+
+              .region__grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+                min-height: auto;
+              }
+
+              .slot {
+                grid-column: auto;
+                grid-row: auto;
+              }
+
+              .slot::after {
+                display: none;
+              }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="cabinet">
+            <main class="screen">
+              <section class="masthead">
+                <div class="title-block">
+                  <p class="title-block__eyebrow">2026 Monte Carlo arcade board</p>
+                  <h1>2026 bracket boss rush</h1>
+                  <p class="title-block__subhead">A retro 8-bit readout of the current tournament forecast. Openers show first-round win odds, each lane promotes the most likely survivor, and the center cabinet tracks the title race after 100,000 simulations.</p>
+                </div>
+                <aside class="marquee">
+                  <div class="marquee__board">
+                    <div class="marquee__line"><span>host city</span><span>Indianapolis</span></div>
+                    <div class="marquee__line"><span>efficiency feed</span><span>Torvik fallback</span></div>
+                    <div class="marquee__line"><span>top boss</span><span>Duke 20.6%</span></div>
+                    <div class="marquee__line blink"><span>status</span><span>press start to sim again</span></div>
+                  </div>
+                </aside>
+              </section>
+
+              <section class="arena">
+                <div class="rail"><section class="region region--east">
+          <header class="region__header">
+            <p class="region__kicker">East sector</p>
+            <div class="region__headline">
+              <h2>Duke</h2>
+              <div class="region__badge">47.1% to clear the region</div>
+            </div>
+          </header>
+          <div class="region__legend">
+            <span>Openers</span>
+            <span>Sweet 16</span>
+            <span>Elite 8</span>
+            <span>Final Four</span>
+          </div>
+          <div class="region__grid">
+            <article class="slot slot--opening slot--east" style="--column: 1; --row-start: 1; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">1</span>
+    <span class="duel-row__name">Duke</span>
+    <span class="duel-row__stat">92.5%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">16</span>
+    <span class="duel-row__name">Siena</span>
+    <span class="duel-row__stat">7.5%</span>
+  </div>
+  <p class="slot__subtext">fav: Duke · title 20.6%</p>
+
+</article><article class="slot slot--opening slot--east" style="--column: 1; --row-start: 2; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row">
+    <span class="seed-chip">8</span>
+    <span class="duel-row__name">Ohio State</span>
+    <span class="duel-row__stat">49.1%</span>
+  </div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">9</span>
+    <span class="duel-row__name">TCU</span>
+    <span class="duel-row__stat">50.9%</span>
+  </div>
+  <p class="slot__subtext">fav: TCU · title 0.1%</p>
+
+</article><article class="slot slot--opening slot--east" style="--column: 1; --row-start: 3; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">5</span>
+    <span class="duel-row__name">St. John&#x27;s</span>
+    <span class="duel-row__stat">78.4%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">12</span>
+    <span class="duel-row__name">Northern Iowa</span>
+    <span class="duel-row__stat">21.6%</span>
+  </div>
+  <p class="slot__subtext">fav: St. John&#x27;s · title 2.1%</p>
+
+</article><article class="slot slot--opening slot--east" style="--column: 1; --row-start: 4; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">4</span>
+    <span class="duel-row__name">Kansas</span>
+    <span class="duel-row__stat">69.4%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">13</span>
+    <span class="duel-row__name">Cal Baptist</span>
+    <span class="duel-row__stat">30.6%</span>
+  </div>
+  <p class="slot__subtext">fav: Kansas · title 0.5%</p>
+
+</article><article class="slot slot--opening slot--east" style="--column: 1; --row-start: 5; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">6</span>
+    <span class="duel-row__name">Louisville</span>
+    <span class="duel-row__stat">56.0%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">11</span>
+    <span class="duel-row__name">South Florida</span>
+    <span class="duel-row__stat">44.0%</span>
+  </div>
+  <p class="slot__subtext">fav: Louisville · title 0.3%</p>
+
+</article><article class="slot slot--opening slot--east" style="--column: 1; --row-start: 6; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">3</span>
+    <span class="duel-row__name">Michigan St.</span>
+    <span class="duel-row__stat">66.3%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">14</span>
+    <span class="duel-row__name">N Dakota St.</span>
+    <span class="duel-row__stat">33.7%</span>
+  </div>
+  <p class="slot__subtext">fav: Michigan St. · title 0.4%</p>
+
+</article><article class="slot slot--opening slot--east" style="--column: 1; --row-start: 7; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">7</span>
+    <span class="duel-row__name">UCLA</span>
+    <span class="duel-row__stat">63.5%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">10</span>
+    <span class="duel-row__name">UCF</span>
+    <span class="duel-row__stat">36.5%</span>
+  </div>
+  <p class="slot__subtext">fav: UCLA · title 0.3%</p>
+
+</article><article class="slot slot--opening slot--east" style="--column: 1; --row-start: 8; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">2</span>
+    <span class="duel-row__name">Connecticut</span>
+    <span class="duel-row__stat">87.3%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">15</span>
+    <span class="duel-row__name">Furman</span>
+    <span class="duel-row__stat">12.7%</span>
+  </div>
+  <p class="slot__subtext">fav: Connecticut · title 5.5%</p>
+
+</article>
+            <article class="slot slot--projection slot--east" style="--column: 2; --row-start: 1; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Duke</h3>
+  </div>
+  <p class="slot__metric">79.8% to reach Sweet 16</p>
+  <p class="slot__subtext">title 20.6% · power 2044 </p>
+</article><article class="slot slot--projection slot--east" style="--column: 2; --row-start: 3; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">5</span>
+    <h3>St. John&#x27;s</h3>
+  </div>
+  <p class="slot__metric">51.4% to reach Sweet 16</p>
+  <p class="slot__subtext">title 2.1% · power 1803 </p>
+</article><article class="slot slot--projection slot--east" style="--column: 2; --row-start: 5; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">3</span>
+    <h3>Michigan St.</h3>
+  </div>
+  <p class="slot__metric">35.8% to reach Sweet 16</p>
+  <p class="slot__subtext">title 0.4% · power 1656 </p>
+</article><article class="slot slot--projection slot--east" style="--column: 2; --row-start: 7; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">2</span>
+    <h3>Connecticut</h3>
+  </div>
+  <p class="slot__metric">65.3% to reach Sweet 16</p>
+  <p class="slot__subtext">title 5.5% · power 1872 </p>
+</article><article class="slot slot--projection slot--east" style="--column: 3; --row-start: 1; --row-span: 4;">
+  <div class="slot__eyebrow">Sweet 16 lane</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Duke</h3>
+  </div>
+  <p class="slot__metric">62.1% to reach Elite 8</p>
+  <p class="slot__subtext">title 20.6% · power 2044 </p>
+</article><article class="slot slot--projection slot--east" style="--column: 3; --row-start: 5; --row-span: 4;">
+  <div class="slot__eyebrow">Sweet 16 lane</div>
+  <div class="slot__headline">
+    <span class="seed-chip">2</span>
+    <h3>Connecticut</h3>
+  </div>
+  <p class="slot__metric">47.9% to reach Elite 8</p>
+  <p class="slot__subtext">title 5.5% · power 1872 </p>
+</article><article class="slot slot--projection slot--east" style="--column: 4; --row-start: 1; --row-span: 8;">
+  <div class="slot__eyebrow">Region boss</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Duke</h3>
+  </div>
+  <p class="slot__metric">47.1% to make the Final Four</p>
+  <p class="slot__subtext">title 20.6% · power 2044 </p>
+</article>
+          </div>
+        </section><section class="region region--south">
+          <header class="region__header">
+            <p class="region__kicker">South sector</p>
+            <div class="region__headline">
+              <h2>Florida</h2>
+              <div class="region__badge">32.7% to clear the region</div>
+            </div>
+          </header>
+          <div class="region__legend">
+            <span>Openers</span>
+            <span>Sweet 16</span>
+            <span>Elite 8</span>
+            <span>Final Four</span>
+          </div>
+          <div class="region__grid">
+            <article class="slot slot--opening slot--south" style="--column: 1; --row-start: 1; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">1</span>
+    <span class="duel-row__name">Florida</span>
+    <span class="duel-row__stat">92.4%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">16</span>
+    <span class="duel-row__name">PVAMU / Lehigh</span>
+    <span class="duel-row__stat">7.6%</span>
+  </div>
+  <p class="slot__subtext">fav: Florida · title 8.1%</p>
+  <p class="slot__note">play-in split PVAMU 46.4% / Lehigh 53.6%</p>
+</article><article class="slot slot--opening slot--south" style="--column: 1; --row-start: 2; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">8</span>
+    <span class="duel-row__name">Clemson</span>
+    <span class="duel-row__stat">56.6%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">9</span>
+    <span class="duel-row__name">Iowa</span>
+    <span class="duel-row__stat">43.4%</span>
+  </div>
+  <p class="slot__subtext">fav: Clemson · title 0.1%</p>
+
+</article><article class="slot slot--opening slot--south" style="--column: 1; --row-start: 3; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">5</span>
+    <span class="duel-row__name">Vanderbilt</span>
+    <span class="duel-row__stat">62.6%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">12</span>
+    <span class="duel-row__name">McNeese</span>
+    <span class="duel-row__stat">37.4%</span>
+  </div>
+  <p class="slot__subtext">fav: Vanderbilt · title 0.6%</p>
+
+</article><article class="slot slot--opening slot--south" style="--column: 1; --row-start: 4; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">4</span>
+    <span class="duel-row__name">Nebraska</span>
+    <span class="duel-row__stat">73.4%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">13</span>
+    <span class="duel-row__name">Troy</span>
+    <span class="duel-row__stat">26.6%</span>
+  </div>
+  <p class="slot__subtext">fav: Nebraska · title 0.5%</p>
+
+</article><article class="slot slot--opening slot--south" style="--column: 1; --row-start: 5; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row">
+    <span class="seed-chip">6</span>
+    <span class="duel-row__name">North Carolina</span>
+    <span class="duel-row__stat">48.9%</span>
+  </div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">11</span>
+    <span class="duel-row__name">VCU</span>
+    <span class="duel-row__stat">51.1%</span>
+  </div>
+  <p class="slot__subtext">fav: VCU · title 0.2%</p>
+
+</article><article class="slot slot--opening slot--south" style="--column: 1; --row-start: 6; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">3</span>
+    <span class="duel-row__name">Illinois</span>
+    <span class="duel-row__stat">77.7%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">14</span>
+    <span class="duel-row__name">Penn</span>
+    <span class="duel-row__stat">22.3%</span>
+  </div>
+  <p class="slot__subtext">fav: Illinois · title 0.9%</p>
+
+</article><article class="slot slot--opening slot--south" style="--column: 1; --row-start: 7; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">7</span>
+    <span class="duel-row__name">Saint Mary&#x27;s</span>
+    <span class="duel-row__stat">62.2%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">10</span>
+    <span class="duel-row__name">Texas A&amp;M</span>
+    <span class="duel-row__stat">37.8%</span>
+  </div>
+  <p class="slot__subtext">fav: Saint Mary&#x27;s · title 0.3%</p>
+
+</article><article class="slot slot--opening slot--south" style="--column: 1; --row-start: 8; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">2</span>
+    <span class="duel-row__name">Houston</span>
+    <span class="duel-row__stat">90.8%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">15</span>
+    <span class="duel-row__name">Idaho</span>
+    <span class="duel-row__stat">9.2%</span>
+  </div>
+  <p class="slot__subtext">fav: Houston · title 8.1%</p>
+
+</article>
+            <article class="slot slot--projection slot--south" style="--column: 2; --row-start: 1; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Florida</h3>
+  </div>
+  <p class="slot__metric">74.1% to reach Sweet 16</p>
+  <p class="slot__subtext">title 8.1% · power 1903 </p>
+</article><article class="slot slot--projection slot--south" style="--column: 2; --row-start: 3; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">4</span>
+    <h3>Nebraska</h3>
+  </div>
+  <p class="slot__metric">38.7% to reach Sweet 16</p>
+  <p class="slot__subtext">title 0.5% · power 1681 </p>
+</article><article class="slot slot--projection slot--south" style="--column: 2; --row-start: 5; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">3</span>
+    <h3>Illinois</h3>
+  </div>
+  <p class="slot__metric">45.1% to reach Sweet 16</p>
+  <p class="slot__subtext">title 0.9% · power 1724 </p>
+</article><article class="slot slot--projection slot--south" style="--column: 2; --row-start: 7; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">2</span>
+    <h3>Houston</h3>
+  </div>
+  <p class="slot__metric">70.4% to reach Sweet 16</p>
+  <p class="slot__subtext">title 8.1% · power 1909 </p>
+</article><article class="slot slot--projection slot--south" style="--column: 3; --row-start: 1; --row-span: 4;">
+  <div class="slot__eyebrow">Sweet 16 lane</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Florida</h3>
+  </div>
+  <p class="slot__metric">53.9% to reach Elite 8</p>
+  <p class="slot__subtext">title 8.1% · power 1903 </p>
+</article><article class="slot slot--projection slot--south" style="--column: 3; --row-start: 5; --row-span: 4;">
+  <div class="slot__eyebrow">Sweet 16 lane</div>
+  <div class="slot__headline">
+    <span class="seed-chip">2</span>
+    <h3>Houston</h3>
+  </div>
+  <p class="slot__metric">51.0% to reach Elite 8</p>
+  <p class="slot__subtext">title 8.1% · power 1909 </p>
+</article><article class="slot slot--projection slot--south" style="--column: 4; --row-start: 1; --row-span: 8;">
+  <div class="slot__eyebrow">Region boss</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Florida</h3>
+  </div>
+  <p class="slot__metric">32.7% to make the Final Four</p>
+  <p class="slot__subtext">title 8.1% · power 1903 </p>
+</article>
+          </div>
+        </section></div>
+
+                <section class="boss-board">
+                  <div class="boss-board__hero">
+                    <p class="boss-board__eyebrow">Boss podium</p>
+                    <h2>Duke</h2>
+                    <div class="boss-board__badge">20.6% title odds</div>
+                    <p>47.1% to make the Final Four · 33.0% to reach the title game · power 2044</p>
+                  </div>
+
+                  <div>
+                    <p class="boss-board__eyebrow">Top contenders</p>
+                    <ol class="leaderboard"><li class="leaderboard__row">
+  <span class="leaderboard__rank">01</span>
+  <span class="leaderboard__name">Duke</span>
+  <span class="leaderboard__stat">20.6%</span>
+</li><li class="leaderboard__row">
+  <span class="leaderboard__rank">02</span>
+  <span class="leaderboard__name">Michigan</span>
+  <span class="leaderboard__stat">16.8%</span>
+</li><li class="leaderboard__row">
+  <span class="leaderboard__rank">03</span>
+  <span class="leaderboard__name">Arizona</span>
+  <span class="leaderboard__stat">16.5%</span>
+</li><li class="leaderboard__row">
+  <span class="leaderboard__rank">04</span>
+  <span class="leaderboard__name">Houston</span>
+  <span class="leaderboard__stat">8.1%</span>
+</li><li class="leaderboard__row">
+  <span class="leaderboard__rank">05</span>
+  <span class="leaderboard__name">Florida</span>
+  <span class="leaderboard__stat">8.1%</span>
+</li><li class="leaderboard__row">
+  <span class="leaderboard__rank">06</span>
+  <span class="leaderboard__name">Purdue</span>
+  <span class="leaderboard__stat">5.6%</span>
+</li><li class="leaderboard__row">
+  <span class="leaderboard__rank">07</span>
+  <span class="leaderboard__name">Connecticut</span>
+  <span class="leaderboard__stat">5.5%</span>
+</li><li class="leaderboard__row">
+  <span class="leaderboard__rank">08</span>
+  <span class="leaderboard__name">Virginia</span>
+  <span class="leaderboard__stat">3.3%</span>
+</li></ol>
+                  </div>
+
+                  <div class="showdowns">
+                    <p class="boss-board__eyebrow">Final Four lanes</p>
+                    <article class="showdown">
+  <div class="showdown__vs">
+    <span>East</span>
+    <span class="showdown__divider">vs</span>
+    <span>South</span>
+  </div>
+  <div class="showdown__teams">
+    <div>
+      <strong>Duke</strong>
+      <span>33.0% to reach title game</span>
+    </div>
+    <div>
+      <strong>Florida</strong>
+      <span>16.4% to reach title game</span>
+    </div>
+  </div>
+  <p class="showdown__favorite">lane favorite: Duke</p>
+</article><article class="showdown">
+  <div class="showdown__vs">
+    <span>Midwest</span>
+    <span class="showdown__divider">vs</span>
+    <span>West</span>
+  </div>
+  <div class="showdown__teams">
+    <div>
+      <strong>Michigan</strong>
+      <span>28.6% to reach title game</span>
+    </div>
+    <div>
+      <strong>Arizona</strong>
+      <span>27.1% to reach title game</span>
+    </div>
+  </div>
+  <p class="showdown__favorite">lane favorite: Michigan</p>
+</article>
+                  </div>
+
+                  <p class="boss-footer">Graphic source: <code>monte_carlo_tourney_results.csv</code>, <code>combined_ratings.csv</code>, and the processed bracket tables for 2026. The cabinet keeps the bracket readable on mobile by collapsing into a stacked tournament board.</p>
+                </section>
+
+                <div class="rail"><section class="region region--west">
+          <header class="region__header">
+            <p class="region__kicker">West sector</p>
+            <div class="region__headline">
+              <h2>Arizona</h2>
+              <div class="region__badge">41.8% to clear the region</div>
+            </div>
+          </header>
+          <div class="region__legend">
+            <span>Openers</span>
+            <span>Sweet 16</span>
+            <span>Elite 8</span>
+            <span>Final Four</span>
+          </div>
+          <div class="region__grid">
+            <article class="slot slot--opening slot--west" style="--column: 1; --row-start: 1; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">1</span>
+    <span class="duel-row__name">Arizona</span>
+    <span class="duel-row__stat">93.2%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">16</span>
+    <span class="duel-row__name">Long Island</span>
+    <span class="duel-row__stat">6.8%</span>
+  </div>
+  <p class="slot__subtext">fav: Arizona · title 16.5%</p>
+
+</article><article class="slot slot--opening slot--west" style="--column: 1; --row-start: 2; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row">
+    <span class="seed-chip">8</span>
+    <span class="duel-row__name">Villanova</span>
+    <span class="duel-row__stat">43.9%</span>
+  </div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">9</span>
+    <span class="duel-row__name">Utah St.</span>
+    <span class="duel-row__stat">56.1%</span>
+  </div>
+  <p class="slot__subtext">fav: Utah St. · title 0.2%</p>
+
+</article><article class="slot slot--opening slot--west" style="--column: 1; --row-start: 3; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">5</span>
+    <span class="duel-row__name">Wisconsin</span>
+    <span class="duel-row__stat">60.6%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">12</span>
+    <span class="duel-row__name">High Point</span>
+    <span class="duel-row__stat">39.4%</span>
+  </div>
+  <p class="slot__subtext">fav: Wisconsin · title 0.4%</p>
+
+</article><article class="slot slot--opening slot--west" style="--column: 1; --row-start: 4; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">4</span>
+    <span class="duel-row__name">Arkansas</span>
+    <span class="duel-row__stat">80.5%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">13</span>
+    <span class="duel-row__name">Hawaii</span>
+    <span class="duel-row__stat">19.5%</span>
+  </div>
+  <p class="slot__subtext">fav: Arkansas · title 2.0%</p>
+
+</article><article class="slot slot--opening slot--west" style="--column: 1; --row-start: 5; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">6</span>
+    <span class="duel-row__name">BYU</span>
+    <span class="duel-row__stat">63.7%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">11</span>
+    <span class="duel-row__name">Texas</span>
+    <span class="duel-row__stat">36.3%</span>
+  </div>
+  <p class="slot__subtext">fav: BYU · title 0.2%</p>
+
+</article><article class="slot slot--opening slot--west" style="--column: 1; --row-start: 6; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">3</span>
+    <span class="duel-row__name">Gonzaga</span>
+    <span class="duel-row__stat">83.4%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">14</span>
+    <span class="duel-row__name">Kennesaw St.</span>
+    <span class="duel-row__stat">16.6%</span>
+  </div>
+  <p class="slot__subtext">fav: Gonzaga · title 2.7%</p>
+
+</article><article class="slot slot--opening slot--west" style="--column: 1; --row-start: 7; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">7</span>
+    <span class="duel-row__name">Miami (FL)</span>
+    <span class="duel-row__stat">59.2%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">10</span>
+    <span class="duel-row__name">Missouri</span>
+    <span class="duel-row__stat">40.8%</span>
+  </div>
+  <p class="slot__subtext">fav: Miami (FL) · title 0.1%</p>
+
+</article><article class="slot slot--opening slot--west" style="--column: 1; --row-start: 8; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">2</span>
+    <span class="duel-row__name">Purdue</span>
+    <span class="duel-row__stat">88.1%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">15</span>
+    <span class="duel-row__name">Queens (N.C.)</span>
+    <span class="duel-row__stat">11.9%</span>
+  </div>
+  <p class="slot__subtext">fav: Purdue · title 5.6%</p>
+
+</article>
+            <article class="slot slot--projection slot--west" style="--column: 2; --row-start: 1; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Arizona</h3>
+  </div>
+  <p class="slot__metric">77.9% to reach Sweet 16</p>
+  <p class="slot__subtext">title 16.5% · power 2016 </p>
+</article><article class="slot slot--projection slot--west" style="--column: 2; --row-start: 3; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">4</span>
+    <h3>Arkansas</h3>
+  </div>
+  <p class="slot__metric">52.2% to reach Sweet 16</p>
+  <p class="slot__subtext">title 2.0% · power 1801 </p>
+</article><article class="slot slot--projection slot--west" style="--column: 2; --row-start: 5; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">3</span>
+    <h3>Gonzaga</h3>
+  </div>
+  <p class="slot__metric">59.6% to reach Sweet 16</p>
+  <p class="slot__subtext">title 2.7% · power 1807 </p>
+</article><article class="slot slot--projection slot--west" style="--column: 2; --row-start: 7; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">2</span>
+    <h3>Purdue</h3>
+  </div>
+  <p class="slot__metric">69.0% to reach Sweet 16</p>
+  <p class="slot__subtext">title 5.6% · power 1882 </p>
+</article><article class="slot slot--projection slot--west" style="--column: 3; --row-start: 1; --row-span: 4;">
+  <div class="slot__eyebrow">Sweet 16 lane</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Arizona</h3>
+  </div>
+  <p class="slot__metric">59.1% to reach Elite 8</p>
+  <p class="slot__subtext">title 16.5% · power 2016 </p>
+</article><article class="slot slot--projection slot--west" style="--column: 3; --row-start: 5; --row-span: 4;">
+  <div class="slot__eyebrow">Sweet 16 lane</div>
+  <div class="slot__headline">
+    <span class="seed-chip">2</span>
+    <h3>Purdue</h3>
+  </div>
+  <p class="slot__metric">45.2% to reach Elite 8</p>
+  <p class="slot__subtext">title 5.6% · power 1882 </p>
+</article><article class="slot slot--projection slot--west" style="--column: 4; --row-start: 1; --row-span: 8;">
+  <div class="slot__eyebrow">Region boss</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Arizona</h3>
+  </div>
+  <p class="slot__metric">41.8% to make the Final Four</p>
+  <p class="slot__subtext">title 16.5% · power 2016 </p>
+</article>
+          </div>
+        </section><section class="region region--midwest">
+          <header class="region__header">
+            <p class="region__kicker">Midwest sector</p>
+            <div class="region__headline">
+              <h2>Michigan</h2>
+              <div class="region__badge">47.5% to clear the region</div>
+            </div>
+          </header>
+          <div class="region__legend">
+            <span>Openers</span>
+            <span>Sweet 16</span>
+            <span>Elite 8</span>
+            <span>Final Four</span>
+          </div>
+          <div class="region__grid">
+            <article class="slot slot--opening slot--midwest" style="--column: 1; --row-start: 1; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">1</span>
+    <span class="duel-row__name">Michigan</span>
+    <span class="duel-row__stat">92.2%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">16</span>
+    <span class="duel-row__name">Howard</span>
+    <span class="duel-row__stat">7.8%</span>
+  </div>
+  <p class="slot__subtext">fav: Michigan · title 16.8%</p>
+
+</article><article class="slot slot--opening slot--midwest" style="--column: 1; --row-start: 2; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row">
+    <span class="seed-chip">8</span>
+    <span class="duel-row__name">Georgia</span>
+    <span class="duel-row__stat">46.4%</span>
+  </div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">9</span>
+    <span class="duel-row__name">Saint Louis</span>
+    <span class="duel-row__stat">53.6%</span>
+  </div>
+  <p class="slot__subtext">fav: Saint Louis · title 0.1%</p>
+
+</article><article class="slot slot--opening slot--midwest" style="--column: 1; --row-start: 3; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">5</span>
+    <span class="duel-row__name">Texas Tech</span>
+    <span class="duel-row__stat">56.8%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">12</span>
+    <span class="duel-row__name">Akron</span>
+    <span class="duel-row__stat">43.2%</span>
+  </div>
+  <p class="slot__subtext">fav: Texas Tech · title 0.4%</p>
+
+</article><article class="slot slot--opening slot--midwest" style="--column: 1; --row-start: 4; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">4</span>
+    <span class="duel-row__name">Alabama</span>
+    <span class="duel-row__stat">70.4%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">13</span>
+    <span class="duel-row__name">Hofstra</span>
+    <span class="duel-row__stat">29.6%</span>
+  </div>
+  <p class="slot__subtext">fav: Alabama · title 0.7%</p>
+
+</article><article class="slot slot--opening slot--midwest" style="--column: 1; --row-start: 5; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">6</span>
+    <span class="duel-row__name">Tennessee</span>
+    <span class="duel-row__stat">54.6%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">11</span>
+    <span class="duel-row__name">MIA OH / SMU</span>
+    <span class="duel-row__stat">45.4%</span>
+  </div>
+  <p class="slot__subtext">fav: Tennessee · title 0.2%</p>
+  <p class="slot__note">play-in split MIA OH 65.2% / SMU 34.8%</p>
+</article><article class="slot slot--opening slot--midwest" style="--column: 1; --row-start: 6; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">3</span>
+    <span class="duel-row__name">Virginia</span>
+    <span class="duel-row__stat">81.8%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">14</span>
+    <span class="duel-row__name">Wright St.</span>
+    <span class="duel-row__stat">18.2%</span>
+  </div>
+  <p class="slot__subtext">fav: Virginia · title 3.3%</p>
+
+</article><article class="slot slot--opening slot--midwest" style="--column: 1; --row-start: 7; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">7</span>
+    <span class="duel-row__name">Kentucky</span>
+    <span class="duel-row__stat">51.6%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">10</span>
+    <span class="duel-row__name">Santa Clara</span>
+    <span class="duel-row__stat">48.4%</span>
+  </div>
+  <p class="slot__subtext">fav: Kentucky · title 0.2%</p>
+
+</article><article class="slot slot--opening slot--midwest" style="--column: 1; --row-start: 8; --row-span: 1;">
+  <div class="slot__eyebrow">Round 64</div>
+  <div class="duel-row duel-row--favorite">
+    <span class="seed-chip">2</span>
+    <span class="duel-row__name">Iowa St.</span>
+    <span class="duel-row__stat">74.5%</span>
+  </div>
+  <div class="duel-row">
+    <span class="seed-chip">15</span>
+    <span class="duel-row__name">Tennessee St.</span>
+    <span class="duel-row__stat">25.5%</span>
+  </div>
+  <p class="slot__subtext">fav: Iowa St. · title 0.6%</p>
+
+</article>
+            <article class="slot slot--projection slot--midwest" style="--column: 2; --row-start: 1; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Michigan</h3>
+  </div>
+  <p class="slot__metric">78.8% to reach Sweet 16</p>
+  <p class="slot__subtext">title 16.8% · power 1996 </p>
+</article><article class="slot slot--projection slot--midwest" style="--column: 2; --row-start: 3; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">4</span>
+    <h3>Alabama</h3>
+  </div>
+  <p class="slot__metric">38.5% to reach Sweet 16</p>
+  <p class="slot__subtext">title 0.7% · power 1698 </p>
+</article><article class="slot slot--projection slot--midwest" style="--column: 2; --row-start: 5; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">3</span>
+    <h3>Virginia</h3>
+  </div>
+  <p class="slot__metric">58.1% to reach Sweet 16</p>
+  <p class="slot__subtext">title 3.3% · power 1817 </p>
+</article><article class="slot slot--projection slot--midwest" style="--column: 2; --row-start: 7; --row-span: 2;">
+  <div class="slot__eyebrow">Pod favorite</div>
+  <div class="slot__headline">
+    <span class="seed-chip">2</span>
+    <h3>Iowa St.</h3>
+  </div>
+  <p class="slot__metric">43.1% to reach Sweet 16</p>
+  <p class="slot__subtext">title 0.6% · power 1678 </p>
+</article><article class="slot slot--projection slot--midwest" style="--column: 3; --row-start: 1; --row-span: 4;">
+  <div class="slot__eyebrow">Sweet 16 lane</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Michigan</h3>
+  </div>
+  <p class="slot__metric">62.7% to reach Elite 8</p>
+  <p class="slot__subtext">title 16.8% · power 1996 </p>
+</article><article class="slot slot--projection slot--midwest" style="--column: 3; --row-start: 5; --row-span: 4;">
+  <div class="slot__eyebrow">Sweet 16 lane</div>
+  <div class="slot__headline">
+    <span class="seed-chip">3</span>
+    <h3>Virginia</h3>
+  </div>
+  <p class="slot__metric">40.0% to reach Elite 8</p>
+  <p class="slot__subtext">title 3.3% · power 1817 </p>
+</article><article class="slot slot--projection slot--midwest" style="--column: 4; --row-start: 1; --row-span: 8;">
+  <div class="slot__eyebrow">Region boss</div>
+  <div class="slot__headline">
+    <span class="seed-chip">1</span>
+    <h3>Michigan</h3>
+  </div>
+  <p class="slot__metric">47.5% to make the Final Four</p>
+  <p class="slot__subtext">title 16.8% · power 1996 </p>
+</article>
+          </div>
+        </section></div>
+              </section>
+            </main>
+          </div>
+        </body>
+        </html>

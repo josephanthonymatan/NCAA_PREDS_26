@@ -1,0 +1,445 @@
+season,team_id_canon,Team,elo,efficiency_rating,ap_latest_rank,ap_preseason_rank,efficiency_source
+2026,abilene_christian,Abilene Christian,1180.9,14.0,,,torvik
+2026,air_force,Air Force,987.19,3.0,,,torvik
+2026,akron,Akron,1624.24,29.167542795398205,,,torvik
+2026,alabama,Alabama,1677.92,23.856161706067702,18.0,15.0,torvik
+2026,alabama_a_and_m,Alabama A&M,1158.33,18.0,,,torvik
+2026,alabama_st,Alabama St.,,10.0,,,torvik
+2026,alabama_state,Alabama State,1047.73,,,,torvik
+2026,albany,Albany,1075.57,11.0,,,torvik
+2026,alcorn_st,Alcorn St.,,9.0,,,torvik
+2026,alcorn_state,Alcorn State,1058.62,,,,torvik
+2026,american,American,1154.46,16.0,,,torvik
+2026,appalachian_st,Appalachian St.,,19.0,,,torvik
+2026,appalachian_state,Appalachian State,1304.09,,,,torvik
+2026,arizona,Arizona,1903.89,32.98845376248818,2.0,13.0,torvik
+2026,arizona_st,Arizona St.,,17.0,,,torvik
+2026,arizona_state,Arizona State,1505.67,,,,torvik
+2026,arkansas,Arkansas,1758.59,26.89252060603813,14.0,14.0,torvik
+2026,arkansas_pine_bluff,Arkansas-Pine Bluff,1079.42,13.0,,,torvik
+2026,arkansas_st,Arkansas St.,,20.0,,,torvik
+2026,arkansas_state,Arkansas State,1358.88,,,,torvik
+2026,army,Army,1015.36,11.0,,,torvik
+2026,auburn,Auburn,1506.75,18.0,,20.0,torvik
+2026,austin_peay,Austin Peay,1335.14,22.0,,,torvik
+2026,ball_st,Ball St.,,12.0,,,torvik
+2026,ball_state,Ball State,1198.07,,,,torvik
+2026,baylor,Baylor,1470.58,16.556049226990993,,,torvik
+2026,bellarmine,Bellarmine,1158.73,13.0,,,torvik
+2026,belmont,Belmont,1536.17,26.0,,,torvik
+2026,bethune_cookman,Bethune-Cookman,1249.8,17.0,,,torvik
+2026,binghamton,Binghamton,1010.69,8.0,,,torvik
+2026,boise_st,Boise St.,,21.0,,,torvik
+2026,boise_state,Boise State,1529.91,,,,torvik
+2026,boston_college,Boston College,1303.72,11.0,,,torvik
+2026,boston_university,Boston University,1252.09,17.0,,,torvik
+2026,bowling_green,Bowling Green,1258.15,18.0,,,torvik
+2026,bradley,Bradley,1471.97,21.454180074377057,,,torvik
+2026,brown,Brown,1152.2,9.0,,,torvik
+2026,bryant,Bryant,1046.42,9.0,,,torvik
+2026,bucknell,Bucknell,1076.15,10.0,,,torvik
+2026,buffalo,Buffalo,1202.82,17.0,,,torvik
+2026,butler,Butler,1388.31,16.0,,,torvik
+2026,byu,BYU,1619.36,23.56561949820983,,8.0,torvik
+2026,cal_baptist,Cal Baptist,1499.14,25.14680089551628,,,torvik
+2026,cal_poly,Cal Poly,1277.57,14.0,,,torvik
+2026,cal_st_bakersfield,Cal St. Bakersfield,,8.0,,,torvik
+2026,cal_st_fullerton,Cal St. Fullerton,,18.0,,,torvik
+2026,cal_st_northridge,Cal St. Northridge,,20.0,,,torvik
+2026,cal_state_bakersfield,Cal State Bakersfield,1018.78,,,,torvik
+2026,cal_state_fullerton,Cal State Fullerton,1348.24,,,,torvik
+2026,cal_state_northridge,Cal State Northridge,1361.07,,,,torvik
+2026,california,California,1465.29,21.771577169590135,,,torvik
+2026,campbell,Campbell,1306.45,16.0,,,torvik
+2026,canisius,Canisius,1061.74,10.0,,,torvik
+2026,central_arkansas,Central Arkansas,1373.34,22.0,,,torvik
+2026,central_connecticut,Central Connecticut,1224.14,18.0,,,torvik
+2026,central_michigan,Central Michigan,1142.5,10.0,,,torvik
+2026,charleston,Charleston,1456.4,21.0,,,torvik
+2026,charleston_southern,Charleston Southern,1167.16,15.0,,,torvik
+2026,charlotte,Charlotte,1339.26,17.0,,,torvik
+2026,chattanooga,Chattanooga,1185.36,13.0,,,torvik
+2026,chicago_st,Chicago St.,,7.0,,,torvik
+2026,chicago_state,Chicago State,1009.98,,,,torvik
+2026,cincinnati,Cincinnati,1541.76,18.0,,,torvik
+2026,clemson,Clemson,1614.89,24.45759764683848,,,torvik
+2026,cleveland_st,Cleveland St.,,11.0,,,torvik
+2026,cleveland_state,Cleveland State,1160.84,,,,torvik
+2026,coastal_carolina,Coastal Carolina,1345.04,19.0,,,torvik
+2026,colgate,Colgate,1209.35,18.0,,,torvik
+2026,colorado,Colorado,1454.44,17.312753391014294,,,torvik
+2026,colorado_st,Colorado St.,,21.683751016131176,,,torvik
+2026,colorado_state,Colorado State,1495.56,,,,torvik
+2026,columbia,Columbia,1223.51,16.0,,,torvik
+2026,connecticut,Connecticut,1743.27,29.961279925352063,7.0,4.0,torvik
+2026,coppin_st,Coppin St.,,7.0,,,torvik
+2026,coppin_state,Coppin State,1015.6,,,,torvik
+2026,cornell,Cornell,1357.09,15.0,,,torvik
+2026,creighton,Creighton,1413.7,15.614659564100332,,23.0,torvik
+2026,dartmouth,Dartmouth,1174.8,11.0,,,torvik
+2026,davidson,Davidson,1384.21,20.0,,,torvik
+2026,dayton,Dayton,1564.55,23.545819925622943,,,torvik
+2026,delaware,Delaware,1197.97,11.0,,,torvik
+2026,delaware_st,Delaware St.,,9.0,,,torvik
+2026,delaware_state,Delaware State,965.34,,,,torvik
+2026,denver,Denver,1196.25,15.0,,,torvik
+2026,depaul,DePaul,1373.53,16.0,,,torvik
+2026,detroit,Detroit,1349.58,,,,torvik
+2026,detroit_mercy,Detroit Mercy,,17.0,,,torvik
+2026,drake,Drake,1299.35,14.0,,,torvik
+2026,drexel,Drexel,1306.32,17.0,,,torvik
+2026,duke,Duke,1909.68,32.98465989380002,1.0,6.0,torvik
+2026,duquesne,Duquesne,1379.83,18.0,,,torvik
+2026,east_carolina,East Carolina,1256.25,11.0,,,torvik
+2026,east_tennessee_st,East Tennessee St.,,23.0,,,torvik
+2026,east_tennessee_state,East Tennessee State,1363.5,,,,torvik
+2026,east_texas_a_and_m,East Texas A&M,1050.0,11.0,,,torvik
+2026,eastern_illinois,Eastern Illinois,1109.88,13.0,,,torvik
+2026,eastern_kentucky,Eastern Kentucky,1118.12,11.0,,,torvik
+2026,eastern_michigan,Eastern Michigan,1093.56,10.0,,,torvik
+2026,eastern_washington,Eastern Washington,1260.32,14.0,,,torvik
+2026,elon,Elon,1174.15,14.0,,,torvik
+2026,evansville,Evansville,1146.79,7.0,,,torvik
+2026,fairfield,Fairfield,1335.46,21.0,,,torvik
+2026,fairleigh_dickinson,Fairleigh Dickinson,1027.82,11.0,,,torvik
+2026,fau,FAU,1357.47,,,,torvik
+2026,fgcu,FGCU,1222.25,,,,torvik
+2026,fiu,FIU,1249.34,15.0,,,torvik
+2026,florida,Florida,1786.41,26.0,4.0,3.0,torvik
+2026,florida_a_and_m,Florida A&M,1206.72,15.0,,,torvik
+2026,florida_atlantic,Florida Atlantic,,18.0,,,torvik
+2026,florida_gulf_coast,Florida Gulf Coast,,16.0,,,torvik
+2026,florida_st,Florida St.,,18.0,,,torvik
+2026,florida_state,Florida State,1555.8,,,,torvik
+2026,fordham,Fordham,1320.13,17.0,,,torvik
+2026,fresno_st,Fresno St.,,13.0,,,torvik
+2026,fresno_state,Fresno State,1247.64,,,,torvik
+2026,furman,Furman,1383.24,22.038720074647937,,,torvik
+2026,gardner_webb,Gardner-Webb,960.65,5.0,,,torvik
+2026,george_mason,George Mason,1426.65,23.0,,,torvik
+2026,george_washington,George Washington,1375.37,18.385041687352743,,,torvik
+2026,georgetown,Georgetown,1422.6,16.0,,,torvik
+2026,georgia,Georgia,1572.01,22.548343637198233,,,torvik
+2026,georgia_southern,Georgia Southern,1352.29,21.0,,,torvik
+2026,georgia_st,Georgia St.,,10.0,,,torvik
+2026,georgia_state,Georgia State,1106.98,,,,torvik
+2026,georgia_tech,Georgia Tech,1255.94,11.0,,,torvik
+2026,gonzaga,Gonzaga,1747.01,30.9364347931528,12.0,21.0,torvik
+2026,grambling_st,Grambling St.,,14.0,,,torvik
+2026,grambling_state,Grambling State,1056.27,,,,torvik
+2026,grand_canyon,Grand Canyon,1476.6,20.0,,,torvik
+2026,green_bay,Green Bay,1299.47,18.0,,,torvik
+2026,hampton,Hampton,1183.59,13.0,,,torvik
+2026,harvard,Harvard,1369.27,17.0,,,torvik
+2026,hawaii,Hawaii,1447.03,24.10747939396187,,,torvik
+2026,high_point,High Point,1574.1,30.148846386908065,,,torvik
+2026,hofstra,Hofstra,1491.42,24.143838293932298,,,torvik
+2026,holy_cross,Holy Cross,1031.05,11.0,,,torvik
+2026,houston,Houston,1777.42,28.96187516730833,5.0,2.0,torvik
+2026,houston_christian,Houston Christian,1121.83,12.0,,,torvik
+2026,howard,Howard,1351.42,24.015690825470266,,,torvik
+2026,idaho,Idaho,1324.6,21.03812483269167,,,torvik
+2026,idaho_st,Idaho St.,,13.0,,,torvik
+2026,idaho_state,Idaho State,1096.88,,,,torvik
+2026,illinois,Illinois,1673.8,24.96403476419251,13.0,17.0,torvik
+2026,illinois_chicago,Illinois Chicago,,19.228422830409865,,,torvik
+2026,illinois_st,Illinois St.,,20.76069762299992,,,torvik
+2026,illinois_state,Illinois State,1431.42,,,,torvik
+2026,incarnate_word,Incarnate Word,1104.13,12.0,,,torvik
+2026,indiana,Indiana,1495.99,18.0,,,torvik
+2026,indiana_st,Indiana St.,,11.0,,,torvik
+2026,indiana_state,Indiana State,1193.28,,,,torvik
+2026,iona,Iona,1255.99,18.0,,,torvik
+2026,iowa,Iowa,1549.57,21.54240235316152,,,torvik
+2026,iowa_st,Iowa St.,1719.04,27.977250932423992,,,torvik
+2026,iu_indianapolis,IU Indianapolis,1003.57,,,,torvik
+2026,iu_indy,IU Indy,,7.0,,,torvik
+2026,jackson_st,Jackson St.,,12.0,,,torvik
+2026,jackson_state,Jackson State,1138.37,,,,torvik
+2026,jacksonville,Jacksonville,1114.88,12.0,,,torvik
+2026,jacksonville_st,Jacksonville St.,,15.0,,,torvik
+2026,jacksonville_state,Jacksonville State,1255.26,,,,torvik
+2026,james_madison,James Madison,1346.71,18.0,,,torvik
+2026,kansas,Kansas,1686.32,23.85319910448372,17.0,19.0,torvik
+2026,kansas_st,Kansas St.,,12.0,,,torvik
+2026,kansas_state,Kansas State,1368.65,,,,torvik
+2026,kennesaw_st,Kennesaw St.,1409.69,21.0635652068472,,,torvik
+2026,kent_st,Kent St.,,24.23930237700008,,,torvik
+2026,kent_state,Kent State,1465.33,,,,torvik
+2026,kentucky,Kentucky,1612.68,21.485932882542507,,9.0,torvik
+2026,la_salle,La Salle,1202.87,9.0,,,torvik
+2026,lafayette,Lafayette,1100.7,11.0,,,torvik
+2026,lamar,Lamar,1074.78,12.0,,,torvik
+2026,le_moyne,Le Moyne,1086.47,15.0,,,torvik
+2026,lehigh,Lehigh,1288.17,18.49246143950241,,,torvik
+2026,liberty,Liberty,1504.67,26.0,,,torvik
+2026,lindenwood,Lindenwood,1170.85,18.0,,,torvik
+2026,lipscomb,Lipscomb,1279.08,19.0,,,torvik
+2026,little_rock,Little Rock,1105.67,12.0,,,torvik
+2026,long_beach_st,Long Beach St.,,10.0,,,torvik
+2026,long_beach_state,Long Beach State,1131.87,,,,torvik
+2026,long_island,Long Island,1341.81,24.011546237511823,,,torvik
+2026,longwood,Longwood,1189.67,16.0,,,torvik
+2026,louisiana,Louisiana,1199.96,11.0,,,torvik
+2026,louisiana_monroe,Louisiana Monroe,,4.0,,,torvik
+2026,louisiana_tech,Louisiana Tech,1375.68,20.0,,,torvik
+2026,louisville,Louisville,1629.11,23.742958515745578,23.0,11.0,torvik
+2026,loyola_chicago,Loyola-Chicago,1265.63,9.0,,,torvik
+2026,loyola_maryland,Loyola-Maryland,1099.36,,,,torvik
+2026,loyola_marymount,Loyola-Marymount,1243.8,15.0,,,torvik
+2026,loyola_md,Loyola MD,,12.0,,,torvik
+2026,lsu,LSU,1353.25,15.0,,,torvik
+2026,maine,Maine,1037.76,8.0,,,torvik
+2026,manhattan,Manhattan,1120.71,12.0,,,torvik
+2026,marist,Marist,1307.56,19.0,,,torvik
+2026,marquette,Marquette,1410.6,12.0,,,torvik
+2026,marshall,Marshall,1313.26,19.0,,,torvik
+2026,maryland,Maryland,1381.92,12.0,,,torvik
+2026,maryland_eastern_shore,Maryland Eastern Shore,942.88,9.0,,,torvik
+2026,massachusetts,Massachusetts,,17.0,,,torvik
+2026,mcneese,McNeese,1583.45,28.157606234389213,,,torvik
+2026,memphis,Memphis,1322.14,13.0,,,torvik
+2026,mercer,Mercer,1285.19,19.0,,,torvik
+2026,mercyhurst,Mercyhurst,1165.39,17.0,,,torvik
+2026,merrimack,Merrimack,1446.05,23.0,,,torvik
+2026,mia_oh,MIA OH,1608.32,31.29169924850944,,,torvik
+2026,miami_fl,Miami (FL),1616.41,25.57153868769521,25.0,,torvik
+2026,michigan,Michigan,1872.09,31.984309174529734,3.0,7.0,torvik
+2026,michigan_st,Michigan St.,1705.11,25.90625740545761,,,torvik
+2026,middle_tennessee,Middle Tennessee,1337.62,17.0,,,torvik
+2026,milwaukee,Milwaukee,1197.4,12.0,,,torvik
+2026,minnesota,Minnesota,1435.46,15.443950773009009,,,torvik
+2026,mississippi,Mississippi,,15.0,,,torvik
+2026,mississippi_st,Mississippi St.,,13.0,,,torvik
+2026,mississippi_state,Mississippi State,1390.32,,,,torvik
+2026,mississippi_valley_st,Mississippi Valley St.,,3.0,,,torvik
+2026,mississippi_valley_state,Mississippi Valley State,861.92,,,,torvik
+2026,missouri,Missouri,1539.24,20.42846131230479,,,torvik
+2026,missouri_st,Missouri St.,,16.0,,,torvik
+2026,missouri_state,Missouri State,1254.2,,,,torvik
+2026,monmouth,Monmouth,1389.62,19.0,,,torvik
+2026,montana,Montana,1283.95,19.0,,,torvik
+2026,montana_st,Montana St.,,18.0,,,torvik
+2026,montana_state,Montana State,1255.51,,,,torvik
+2026,morehead_st,Morehead St.,,20.0,,,torvik
+2026,morehead_state,Morehead State,1320.24,,,,torvik
+2026,morgan_st,Morgan St.,,14.0,,,torvik
+2026,morgan_state,Morgan State,1146.23,,,,torvik
+2026,mount_saint_marys,Mount Saint Mary's,1278.24,,,,torvik
+2026,mount_st_marys,Mount St. Mary's,,15.0,,,torvik
+2026,murray_st,Murray St.,,20.1908949287343,,,torvik
+2026,murray_state,Murray State,1367.37,,,,torvik
+2026,n_dakota_st,N Dakota St.,1472.87,27.09374259454239,,,torvik
+2026,navy,Navy,1409.85,26.147611329015778,,,torvik
+2026,nc_state,NC State,1502.35,20.0,,,torvik
+2026,nebraska,Nebraska,1650.11,26.91833179652577,15.0,,torvik
+2026,nebraska_omaha,Nebraska Omaha,,16.0,,,torvik
+2026,nevada,Nevada,1483.64,22.8091050712657,,,torvik
+2026,new_hampshire,New Hampshire,1007.64,9.0,,,torvik
+2026,new_haven,New Haven,1096.22,14.0,,,torvik
+2026,new_mexico,New Mexico,1516.94,23.802585161499945,,,torvik
+2026,new_mexico_st,New Mexico St.,,16.0,,,torvik
+2026,new_mexico_state,New Mexico State,1300.08,,,,torvik
+2026,new_orleans,New Orleans,1224.16,15.0,,,torvik
+2026,niagara,Niagara,1055.59,8.0,,,torvik
+2026,nicholls,Nicholls,1201.3,,,,torvik
+2026,nicholls_st,Nicholls St.,,14.0,,,torvik
+2026,njit,NJIT,1155.93,16.0,,,torvik
+2026,norfolk_st,Norfolk St.,,15.0,,,torvik
+2026,norfolk_state,Norfolk State,1142.82,,,,torvik
+2026,north_alabama,North Alabama,1077.45,9.0,,,torvik
+2026,north_carolina,North Carolina,1649.41,24.635021567092917,21.0,25.0,torvik
+2026,north_carolina_a_and_t,North Carolina A&T,1104.35,11.0,,,torvik
+2026,north_carolina_central,North Carolina Central,1099.26,14.0,,,torvik
+2026,north_dakota,North Dakota,1276.28,18.0,,,torvik
+2026,north_florida,North Florida,1014.96,7.0,,,torvik
+2026,north_texas,North Texas,1407.34,19.0,,,torvik
+2026,northeastern,Northeastern,1077.19,7.0,,,torvik
+2026,northern_arizona,Northern Arizona,1042.34,10.0,,,torvik
+2026,northern_colorado,Northern Colorado,1317.65,20.0,,,torvik
+2026,northern_illinois,Northern Illinois,1073.11,9.0,,,torvik
+2026,northern_iowa,Northern Iowa,1491.72,23.17635828895187,,,torvik
+2026,northern_kentucky,Northern Kentucky,1308.48,20.0,,,torvik
+2026,northwestern,Northwestern,1464.22,15.0,,,torvik
+2026,northwestern_st,Northwestern St.,,10.0,,,torvik
+2026,northwestern_state,Northwestern State,1109.67,,,,torvik
+2026,notre_dame,Notre Dame,1327.95,13.0,,,torvik
+2026,oakland,Oakland,1272.64,16.0,,,torvik
+2026,ohio,Ohio,1242.53,15.0,,,torvik
+2026,ohio_state,Ohio State,1634.9,21.685107661135035,,,torvik
+2026,oklahoma,Oklahoma,1570.09,19.687246608985703,,,torvik
+2026,oklahoma_st,Oklahoma St.,,20.0,,,torvik
+2026,oklahoma_state,Oklahoma State,1508.22,,,,torvik
+2026,old_dominion,Old Dominion,1194.13,12.0,,,torvik
+2026,ole_miss,Ole Miss,1461.62,,,,torvik
+2026,omaha,Omaha,1254.27,,,,torvik
+2026,oral_roberts,Oral Roberts,1072.88,10.0,,,torvik
+2026,oregon,Oregon,1406.09,12.0,,,torvik
+2026,oregon_st,Oregon St.,,17.0,,,torvik
+2026,oregon_state,Oregon State,1395.75,,,,torvik
+2026,pacific,Pacific,1310.62,18.0,,,torvik
+2026,penn,Penn,1444.03,18.03596523580749,,,torvik
+2026,penn_st,Penn St.,,12.0,,,torvik
+2026,penn_state,Penn State,1312.41,,,,torvik
+2026,pepperdine,Pepperdine,1149.77,9.0,,,torvik
+2026,pittsburgh,Pittsburgh,1398.81,13.0,,,torvik
+2026,portland,Portland,1259.05,15.0,,,torvik
+2026,portland_st,Portland St.,,20.0,,,torvik
+2026,portland_state,Portland State,1286.37,,,,torvik
+2026,presbyterian,Presbyterian,,15.0,,,torvik
+2026,presbyterian_college,Presbyterian College,1177.81,,,,torvik
+2026,princeton,Princeton,1192.27,9.0,,,torvik
+2026,providence,Providence,1402.82,15.0,,,torvik
+2026,purdue,Purdue,1767.19,27.971523182030033,8.0,1.0,torvik
+2026,purdue_fort_wayne,Purdue Fort Wayne,1263.27,17.0,,,torvik
+2026,pvamu,PVAMU,1239.68,18.50753856049759,,,torvik
+2026,queens_nc,Queens (N.C.),1382.14,21.028476817969967,,,torvik
+2026,quinnipiac,Quinnipiac,1271.58,19.0,,,torvik
+2026,radford,Radford,1208.98,16.0,,,torvik
+2026,rhode_island,Rhode Island,1291.92,16.0,,,torvik
+2026,rice,Rice,1246.0,13.0,,,torvik
+2026,richmond,Richmond,1218.49,15.0,,,torvik
+2026,rider,Rider,1014.65,4.0,,,torvik
+2026,robert_morris,Robert Morris,1433.89,22.0,,,torvik
+2026,rutgers,Rutgers,1428.56,14.385340435899668,,,torvik
+2026,sacramento_st,Sacramento St.,,10.0,,,torvik
+2026,sacramento_state,Sacramento State,1060.78,,,,torvik
+2026,sacred_heart,Sacred Heart,1232.86,14.0,,,torvik
+2026,saint_bonaventure,Saint Bonaventure,1317.43,,,,torvik
+2026,saint_francis,Saint Francis,,7.0,,,torvik
+2026,saint_francis_pa,Saint Francis (PA),967.07,,,,torvik
+2026,saint_josephs,Saint Joseph's,1515.04,22.316248983868824,,,torvik
+2026,saint_louis,Saint Louis,1574.54,28.451656362801767,,,torvik
+2026,saint_marys,Saint Mary's,1675.67,27.601665299945225,,,torvik
+2026,saint_peters,Saint Peter's,1297.78,17.0,,,torvik
+2026,saint_thomas,Saint Thomas,1344.69,,,,torvik
+2026,sam_houston_st,Sam Houston St.,,22.197414838500055,,,torvik
+2026,sam_houston_state,Sam Houston State,1403.05,,,,torvik
+2026,samford,Samford,1341.74,18.0,,,torvik
+2026,san_diego,San Diego,1165.78,12.0,,,torvik
+2026,san_diego_st,San Diego St.,,22.0,,,torvik
+2026,san_diego_state,San Diego State,1572.22,,,,torvik
+2026,san_francisco,San Francisco,1373.35,17.0,,,torvik
+2026,san_jose_st,San Jose St.,,9.0,,,torvik
+2026,san_jose_state,San Jose State,1201.62,,,,torvik
+2026,santa_clara,Santa Clara,1616.29,26.514067117457493,,,torvik
+2026,seattle,Seattle,,21.0,,,torvik
+2026,seattle_university,Seattle University,1389.56,,,,torvik
+2026,seton_hall,Seton Hall,1491.59,21.0,,,torvik
+2026,siena,Siena,1409.88,23.01534010619998,,,torvik
+2026,siu_edwardsville,SIU Edwardsville,,19.0,,,torvik
+2026,siue,SIUE,1222.88,,,,torvik
+2026,smu,SMU,1474.94,20.70830075149056,,,torvik
+2026,south_alabama,South Alabama,1326.95,21.0,,,torvik
+2026,south_carolina,South Carolina,1352.83,13.0,,,torvik
+2026,south_carolina_st,South Carolina St.,,10.0,,,torvik
+2026,south_carolina_state,South Carolina State,1095.75,,,,torvik
+2026,south_carolina_upstate,South Carolina Upstate,1081.24,,,,torvik
+2026,south_dakota,South Dakota,1202.77,16.0,,,torvik
+2026,south_dakota_st,South Dakota St.,,14.0,,,torvik
+2026,south_dakota_state,South Dakota State,1176.15,,,,torvik
+2026,south_florida,South Florida,1610.68,25.257041484254422,,,torvik
+2026,southeast_missouri,Southeast Missouri,1322.84,,,,torvik
+2026,southeast_missouri_st,Southeast Missouri St.,,20.0,,,torvik
+2026,southeastern_louisiana,Southeastern Louisiana,1090.73,9.0,,,torvik
+2026,southern,Southern,1221.56,17.0,,,torvik
+2026,southern_illinois,Southern Illinois,1360.41,16.0,,,torvik
+2026,southern_indiana,Southern Indiana,986.15,7.0,,,torvik
+2026,southern_miss,Southern Miss,1347.58,19.0,,,torvik
+2026,southern_utah,Southern Utah,1129.83,10.0,,,torvik
+2026,st_bonaventure,St. Bonaventure,,17.0,,,torvik
+2026,st_johns,St. John's,1805.23,28.82364171104813,,5.0,torvik
+2026,st_thomas,St. Thomas,,24.0,,,torvik
+2026,stanford,Stanford,1502.2,20.51605420099602,,,torvik
+2026,stephen_f_austin,Stephen F. Austin,1443.76,28.0,,,torvik
+2026,stetson,Stetson,1117.75,12.0,,,torvik
+2026,stonehill,Stonehill,1057.54,12.0,,,torvik
+2026,stony_brook,Stony Brook,1241.37,17.0,,,torvik
+2026,syracuse,Syracuse,1364.54,15.0,,,torvik
+2026,tarleton_st,Tarleton St.,,14.0,,,torvik
+2026,tarleton_state,Tarleton State,1142.32,,,,torvik
+2026,tcu,TCU,1638.72,22.314892338864965,,,torvik
+2026,temple,Temple,1269.68,16.0,,,torvik
+2026,tennessee,Tennessee,1612.45,22.0,23.0,18.0,torvik
+2026,tennessee_martin,Tennessee-Martin,1242.05,22.0,,,torvik
+2026,tennessee_st,Tennessee St.,1403.17,23.022749067576008,,,torvik
+2026,tennessee_tech,Tennessee Tech,1131.67,13.0,,,torvik
+2026,texas,Texas,1525.61,19.43438050179017,,,torvik
+2026,texas_a_and_m,Texas A&M,1555.68,21.398334700054775,,,torvik
+2026,texas_a_and_m_corpus_chris,Texas A&M Corpus Chris,,18.0,,,torvik
+2026,texas_a_and_m_corpus_christi,Texas A&M-Corpus Christi,1278.65,,,,torvik
+2026,texas_southern,Texas Southern,1136.61,12.0,,,torvik
+2026,texas_st,Texas St.,,19.0,,,torvik
+2026,texas_state,Texas State,1343.17,,,,torvik
+2026,texas_tech,Texas Tech,1659.65,22.832457204601795,20.0,10.0,torvik
+2026,the_citadel,The Citadel,1120.56,11.0,,,torvik
+2026,toledo,Toledo,1374.07,19.0,,,torvik
+2026,towson,Towson,1392.96,19.0,,,torvik
+2026,troy,Troy,1434.85,22.08166820347423,,,torvik
+2026,tulane,Tulane,1340.98,18.0,,,torvik
+2026,tulsa,Tulsa,1529.81,27.0,,,torvik
+2026,uab,UAB,1432.01,20.0,,,torvik
+2026,uc_davis,UC Davis,1304.83,19.0,,,torvik
+2026,uc_irvine,UC Irvine,1442.84,23.0,,,torvik
+2026,uc_riverside,UC Riverside,1160.36,10.0,,,torvik
+2026,uc_san_diego,UC San Diego,1407.53,23.0,,,torvik
+2026,uc_santa_barbara,UC Santa Barbara,1278.1,18.0,,,torvik
+2026,ucf,UCF,1545.42,21.295373363511576,,,torvik
+2026,ucla,UCLA,1663.38,23.704626636488424,,12.0,torvik
+2026,uic,UIC,1411.62,,,,torvik
+2026,ulm,ULM,918.54,,,,torvik
+2026,umass,UMass,1264.62,,,,torvik
+2026,umass_lowell,UMass-Lowell,1175.02,15.0,,,torvik
+2026,umbc,UMBC,1359.51,24.0,,,torvik
+2026,umkc,UMKC,882.62,4.0,,,torvik
+2026,unc_asheville,UNC Asheville,1245.06,15.0,,,torvik
+2026,unc_greensboro,UNC Greensboro,,15.0,,,torvik
+2026,unc_wilmington,UNC Wilmington,,27.0,,,torvik
+2026,uncg,UNCG,1251.87,,,,torvik
+2026,uncw,UNCW,1519.53,,,,torvik
+2026,unlv,UNLV,1485.73,18.0,,,torvik
+2026,usc,USC,1425.07,18.0,,,torvik
+2026,usc_upstate,USC Upstate,,13.0,,,torvik
+2026,ut_arlington,UT Arlington,,18.0,,,torvik
+2026,ut_rio_grande_valley,UT Rio Grande Valley,,19.0,,,torvik
+2026,uta,UTA,1286.67,,,,torvik
+2026,utah,Utah,1281.91,10.0,,,torvik
+2026,utah_st,Utah St.,1661.89,28.541603225175415,,,torvik
+2026,utah_tech,Utah Tech,1315.06,19.0,,,torvik
+2026,utah_valley,Utah Valley,1491.98,25.614958312647257,,,torvik
+2026,utep,UTEP,1213.69,11.0,,,torvik
+2026,utrgv,UTRGV,1332.87,,,,torvik
+2026,utsa,UTSA,1047.68,5.0,,,torvik
+2026,valparaiso,Valparaiso,1388.93,18.0,,,torvik
+2026,vanderbilt,Vanderbilt,1686.14,26.842393765610787,16.0,,torvik
+2026,vcu,VCU,1682.47,27.364978432907083,,,torvik
+2026,vermont,Vermont,1330.02,22.0,,,torvik
+2026,villanova,Villanova,1610.29,24.458396774824585,,,torvik
+2026,virginia,Virginia,1761.56,29.921138072654816,9.0,,torvik
+2026,virginia_tech,Virginia Tech,1475.2,19.0,,,torvik
+2026,vmi,VMI,936.75,6.0,,,torvik
+2026,wagner,Wagner,1152.19,14.0,,,torvik
+2026,wake_forest,Wake Forest,1482.19,17.852388670984226,,,torvik
+2026,washington,Washington,1453.36,16.0,,,torvik
+2026,washington_st,Washington St.,,12.0,,,torvik
+2026,washington_state,Washington State,1241.17,,,,torvik
+2026,weber_st,Weber St.,,16.0,,,torvik
+2026,weber_state,Weber State,1207.03,,,,torvik
+2026,west_georgia,West Georgia,1152.54,15.0,,,torvik
+2026,west_virginia,West Virginia,1474.97,18.48394579900398,,,torvik
+2026,western_carolina,Western Carolina,1291.4,15.0,,,torvik
+2026,western_illinois,Western Illinois,893.17,5.0,,,torvik
+2026,western_kentucky,Western Kentucky,1319.47,18.0,,,torvik
+2026,western_michigan,Western Michigan,1125.14,11.0,,,torvik
+2026,wichita_st,Wichita St.,,23.0,,,torvik
+2026,wichita_state,Wichita State,1545.81,,,,torvik
+2026,william_and_mary,William & Mary,1324.18,20.0,,,torvik
+2026,winthrop,Winthrop,1408.42,23.0,,,torvik
+2026,wisconsin,Wisconsin,1696.19,24.851153613091935,19.0,24.0,torvik
+2026,wofford,Wofford,1266.1,19.0,,,torvik
+2026,wright_st,Wright St.,1443.29,23.078861927345184,,,torvik
+2026,wyoming,Wyoming,1365.84,18.0,,,torvik
+2026,xavier,Xavier,1401.09,15.0,,,torvik
+2026,yale,Yale,1478.39,24.0,,,torvik
+2026,youngstown_st,Youngstown St.,,15.0,,,torvik
+2026,youngstown_state,Youngstown State,1228.31,,,,torvik

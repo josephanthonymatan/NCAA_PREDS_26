@@ -1,0 +1,69 @@
+team_id_canon,Team,has_elo,has_efficiency,has_ap_latest,has_ap_preseason,needs_override
+akron,Akron,True,True,False,False,False
+alabama,Alabama,True,True,True,True,False
+arizona,Arizona,True,True,True,True,False
+arkansas,Arkansas,True,True,True,True,False
+byu,BYU,True,True,False,True,False
+cal_baptist,Cal Baptist,True,True,False,False,False
+clemson,Clemson,True,True,False,False,False
+connecticut,Connecticut,True,True,True,True,False
+duke,Duke,True,True,True,True,False
+florida,Florida,True,True,True,True,False
+furman,Furman,True,True,False,False,False
+georgia,Georgia,True,True,False,False,False
+gonzaga,Gonzaga,True,True,True,True,False
+hawaii,Hawaii,True,True,False,False,False
+high_point,High Point,True,True,False,False,False
+hofstra,Hofstra,True,True,False,False,False
+houston,Houston,True,True,True,True,False
+howard,Howard,True,True,False,False,False
+idaho,Idaho,True,True,False,False,False
+illinois,Illinois,True,True,True,True,False
+iowa,Iowa,True,True,False,False,False
+iowa_st,Iowa St.,True,True,False,False,False
+kansas,Kansas,True,True,True,True,False
+kennesaw_st,Kennesaw St.,True,True,False,False,False
+kentucky,Kentucky,True,True,False,True,False
+lehigh,Lehigh,True,True,False,False,False
+long_island,Long Island,True,True,False,False,False
+louisville,Louisville,True,True,True,True,False
+mcneese,McNeese,True,True,False,False,False
+mia_oh,MIA OH,True,True,False,False,False
+miami_fl,Miami (FL),True,True,True,False,False
+michigan,Michigan,True,True,True,True,False
+michigan_st,Michigan St.,True,True,False,False,False
+missouri,Missouri,True,True,False,False,False
+n_dakota_st,N Dakota St.,True,True,False,False,False
+nc_state,NC State,True,True,False,False,False
+nebraska,Nebraska,True,True,True,False,False
+north_carolina,North Carolina,True,True,True,True,False
+northern_iowa,Northern Iowa,True,True,False,False,False
+ohio_state,Ohio State,True,True,False,False,False
+penn,Penn,True,True,False,False,False
+purdue,Purdue,True,True,True,True,False
+pvamu,PVAMU,True,True,False,False,False
+queens_nc,Queens (N.C.),True,True,False,False,False
+saint_louis,Saint Louis,True,True,False,False,False
+saint_marys,Saint Mary's,True,True,False,False,False
+santa_clara,Santa Clara,True,True,False,False,False
+siena,Siena,True,True,False,False,False
+smu,SMU,True,True,False,False,False
+south_florida,South Florida,True,True,False,False,False
+st_johns,St. John's,True,True,False,True,False
+tcu,TCU,True,True,False,False,False
+tennessee,Tennessee,True,True,True,True,False
+tennessee_st,Tennessee St.,True,True,False,False,False
+texas,Texas,True,True,False,False,False
+texas_a_and_m,Texas A&M,True,True,False,False,False
+texas_tech,Texas Tech,True,True,True,True,False
+troy,Troy,True,True,False,False,False
+ucf,UCF,True,True,False,False,False
+ucla,UCLA,True,True,False,True,False
+umbc,UMBC,True,True,False,False,False
+utah_st,Utah St.,True,True,False,False,False
+vanderbilt,Vanderbilt,True,True,True,False,False
+vcu,VCU,True,True,False,False,False
+villanova,Villanova,True,True,False,False,False
+virginia,Virginia,True,True,True,False,False
+wisconsin,Wisconsin,True,True,True,True,False
+wright_st,Wright St.,True,True,False,False,False

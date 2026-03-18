@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/data/output/2026/matchup_lab_2026.html"
+    },
+    {
+      "source": "/rarest",
+      "destination": "/data/output/2026/most_unlikely_bracket_2026.html"
+    },
+    {
+      "source": "/retro",
+      "destination": "/data/output/2026/retro_bracket_2026.html"
+    }
+  ]
+}

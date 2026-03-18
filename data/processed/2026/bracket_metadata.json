@@ -1,0 +1,23 @@
+{
+  "efficiency_source": "torvik",
+  "final_four_pairings": [
+    [
+      "East",
+      "South"
+    ],
+    [
+      "Midwest",
+      "West"
+    ]
+  ],
+  "host_city": "Indianapolis",
+  "report_sections": [
+    "East",
+    "West",
+    "South",
+    "Midwest"
+  ],
+  "season": 2026,
+  "source": "research_report",
+  "unresolved_first_four_games": 2
+}

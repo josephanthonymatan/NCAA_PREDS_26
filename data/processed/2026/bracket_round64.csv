@@ -1,0 +1,33 @@
+region,matchup_order,seed_top,team_top,seed_bottom,team_bottom,play_in_group_top,play_in_group_bottom,note,season,team_top_name,team_bottom_name
+East,1,1,duke,16,siena,,,,2026,Duke,Siena
+East,2,8,ohio_state,9,tcu,,,,2026,Ohio State,TCU
+East,3,5,st_johns,12,northern_iowa,,,,2026,St. John's,Northern Iowa
+East,4,4,kansas,13,cal_baptist,,,,2026,Kansas,Cal Baptist
+East,5,6,louisville,11,south_florida,,,,2026,Louisville,South Florida
+East,6,3,michigan_st,14,n_dakota_st,,,,2026,Michigan St.,N Dakota St.
+East,7,7,ucla,10,ucf,,,,2026,UCLA,UCF
+East,8,2,connecticut,15,furman,,,,2026,Connecticut,Furman
+West,1,1,arizona,16,long_island,,,,2026,Arizona,Long Island
+West,2,8,villanova,9,utah_st,,,,2026,Villanova,Utah St.
+West,3,5,wisconsin,12,high_point,,,,2026,Wisconsin,High Point
+West,4,4,arkansas,13,hawaii,,,,2026,Arkansas,Hawaii
+West,5,6,byu,11,texas,,,First Four winner over NC State,2026,BYU,Texas
+West,6,3,gonzaga,14,kennesaw_st,,,,2026,Gonzaga,Kennesaw St.
+West,7,7,miami_fl,10,missouri,,,,2026,Miami (FL),Missouri
+West,8,2,purdue,15,queens_nc,,,,2026,Purdue,Queens (N.C.)
+South,1,1,florida,16,,,south_16_1_bottom,First Four matchup,2026,Florida,
+South,2,8,clemson,9,iowa,,,,2026,Clemson,Iowa
+South,3,5,vanderbilt,12,mcneese,,,,2026,Vanderbilt,McNeese
+South,4,4,nebraska,13,troy,,,,2026,Nebraska,Troy
+South,5,6,north_carolina,11,vcu,,,,2026,North Carolina,VCU
+South,6,3,illinois,14,penn,,,,2026,Illinois,Penn
+South,7,7,saint_marys,10,texas_a_and_m,,,,2026,Saint Mary's,Texas A&M
+South,8,2,houston,15,idaho,,,,2026,Houston,Idaho
+Midwest,1,1,michigan,16,howard,,,First Four winner over UMBC,2026,Michigan,Howard
+Midwest,2,8,georgia,9,saint_louis,,,,2026,Georgia,Saint Louis
+Midwest,3,5,texas_tech,12,akron,,,,2026,Texas Tech,Akron
+Midwest,4,4,alabama,13,hofstra,,,,2026,Alabama,Hofstra
+Midwest,5,6,tennessee,11,,,midwest_11_5_bottom,First Four matchup,2026,Tennessee,
+Midwest,6,3,virginia,14,wright_st,,,,2026,Virginia,Wright St.
+Midwest,7,7,kentucky,10,santa_clara,,,,2026,Kentucky,Santa Clara
+Midwest,8,2,iowa_st,15,tennessee_st,,,,2026,Iowa St.,Tennessee St.

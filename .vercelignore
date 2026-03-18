@@ -1,0 +1,8 @@
+dogfood-*/
+tests/
+src/
+data/raw/
+data/processed/
+ncaa_26.md
+ncaa_26_links.md
+pyproject.toml
