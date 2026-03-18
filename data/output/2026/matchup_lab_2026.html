@@ -473,6 +473,7 @@
       --mc-fill: 100%;
       --fill-strong: color-mix(in oklch, var(--gold) 52%, var(--screen));
       --fill-soft: color-mix(in oklch, var(--gold) 16%, var(--screen));
+      --fill-edge: color-mix(in oklch, var(--gold) 62%, var(--outline) 38%);
     }
 
     .team-button strong {
@@ -513,9 +514,24 @@
         );
     }
 
+    .team-button.is-selected.has-mc-fill::after {
+      content: "";
+      position: absolute;
+      top: 0.2rem;
+      bottom: 0.2rem;
+      left: clamp(0.2rem, var(--mc-fill), calc(100% - 0.2rem));
+      width: 3px;
+      transform: translateX(-50%);
+      background: var(--fill-edge);
+      box-shadow: 0 0 0 1px color-mix(in oklch, white 28%, transparent);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
     .team-button.is-underdog.is-selected {
       --fill-strong: color-mix(in oklch, var(--coral) 34%, var(--screen));
       --fill-soft: color-mix(in oklch, var(--coral) 12%, var(--screen));
+      --fill-edge: color-mix(in oklch, var(--coral) 68%, var(--outline) 32%);
       background: color-mix(in oklch, var(--coral) 30%, var(--screen));
       border-color: color-mix(in oklch, var(--coral) 38%, var(--outline));
     }
@@ -533,6 +549,8 @@
 
     .button-meta {
       display: flex;
+      position: relative;
+      z-index: 1;
       justify-content: space-between;
       align-items: center;
       gap: 0.6rem;
@@ -1095,28 +1113,28 @@
       const longshotText = longshotCount === 1 ? "won once" : `won ${formatCount(longshotCount)} times`;
       const cards = [
         {
-          question: "What is Elo?",
-          short: "rating system",
+          question: "What exactly is Elo?",
+          short: "TLDR: Team strength rating. Tap for more detail.",
           answer:
-            "Elo is a rating system created by Arpad Elo for chess. Higher Elo means a stronger expected team. Here I use the Elo gap between two teams to turn a matchup into an implied win probability."
+            "Elo ratings measure team strength based on past performance. Originally made by Arpad Elo for chess, a higher Elo means a stronger team. I use the Elo difference between teams to calculate each matchup's win probability."
         },
         {
-          question: "How do I use this?",
-          short: "click through the bracket",
+          question: "How do I make my picks?",
+          short: "TLDR: Choose teams to advance. Tap for more detail.",
           answer:
-            "Click a team to advance it. If you leave a game alone, the higher-Elo team advances by default. As you make picks, later rounds update automatically so only legal matchups stay on the board."
+            "Just click the team you think will win each game. Explore how probabilities change by creating different scenarios. You may want to compare simulated win percentage to public opinion to find sneaky underdogs."
         },
         {
-          question: "What is Monte Carlo simulation?",
-          short: "100,000 saved tournament runs",
+          question: "What does Monte Carlo simulation mean here?",
+          short: "Simulating 100,000 tournaments. Tap for more detail.",
           answer:
-            `A Monte Carlo simulation reruns the tournament many times with randomness weighted by each matchup's odds. People use it in finance, game theory, risk modeling, and sports to estimate a full range of outcomes instead of one fixed bracket. This page uses ${formatCount(APP_DATA.simulationCount)} saved runs.`
+            `Monte Carlo simulations replay the entire tournament thousands of times, randomly—but realistically—based on each team's chance to win. It's widely used in fields like finance, risk management, and sports to capture possible outcomes beyond a single scenario. This site draws from ${formatCount(APP_DATA.simulationCount)} simulated tournaments.`
         },
         {
-          question: "Who is going to win?",
-          short: `${APP_DATA.hostCity} final`,
+          question: "Who will win the whole thing?",
+          short: "TLDR: We don't know. Tap for more detail.",
           answer:
-            `We can't predict the future. In this model, ${topTeam} won ${topPct} of the ${formatCount(APP_DATA.simulationCount)} saved tournaments. But even ${longshot} ${longshotText}. Dream on.`
+            `No crystal balls here—but according to this model, ${topTeam} took home the title ${topPct} of the time across ${formatCount(APP_DATA.simulationCount)} simulations. Even ${longshot} ${longshotText}. Anything can happen.`
         },
       ];
 
