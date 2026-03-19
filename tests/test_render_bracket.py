@@ -33,7 +33,13 @@ class RenderBracketTests(unittest.TestCase):
             self.assertIn("Duke", html)
             self.assertIn("East sector", html)
             self.assertIn("press start to sim again", html)
-            self.assertIn('rel="icon"', html)
+            self.assertIn('href="favicon.ico"', html)
+            self.assertIn('apple-touch-icon.png', html)
+            self.assertTrue((destination.parent / "favicon.ico").exists())
+            self.assertTrue((destination.parent / "favicon.svg").exists())
+            self.assertTrue((destination.parent / "favicon-32x32.png").exists())
+            self.assertTrue((destination.parent / "favicon-16x16.png").exists())
+            self.assertTrue((destination.parent / "apple-touch-icon.png").exists())
 
     def test_render_matchup_explorer_writes_local_interactive_artifact(self) -> None:
         output_root = ROOT / "data" / "output" / "2026"
@@ -71,7 +77,10 @@ class RenderBracketTests(unittest.TestCase):
             self.assertIn("Round of 64", html)
             self.assertIn("Raw Elo", html)
             self.assertIn("https://github.com/josephanthonymatan", html)
-            self.assertIn('rel="icon"', html)
+            self.assertIn('href="favicon.ico"', html)
+            self.assertIn('apple-touch-icon.png', html)
+            self.assertTrue((destination.parent / "favicon.ico").exists())
+            self.assertTrue((destination.parent / "favicon.svg").exists())
             self.assertIn('const MOBILE_ROUND_ORDER = APP_DATA.playInIds.length', html)
             self.assertIn('let activeMobileRound = MOBILE_ROUND_ORDER.includes("R64") ? "R64" : MOBILE_ROUND_ORDER[0];', html)
             self.assertIn('data-active-round="${activeMobileRound}"', html)
@@ -105,7 +114,10 @@ class RenderBracketTests(unittest.TestCase):
             self.assertIn("most unlikely bracket", html.lower())
             self.assertIn("The games that made this bracket so unlikely", html)
             self.assertIn("Duke", html)
-            self.assertIn('rel="icon"', html)
+            self.assertIn('href="favicon.ico"', html)
+            self.assertIn('apple-touch-icon.png', html)
+            self.assertTrue((destination.parent / "favicon.ico").exists())
+            self.assertTrue((destination.parent / "favicon.svg").exists())
 
 
 if __name__ == "__main__":

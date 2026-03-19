@@ -12,7 +12,7 @@ import pandas as pd
 
 from .constants import DEFAULT_SEASON, FINAL_FOUR_PAIRINGS, REGIONS
 from .paths import output_dir, processed_dir
-from .pixel_icon import pixel_basketball_icon_data_url
+from .pixel_icon import favicon_head_tags
 from .simulate import _win_probability
 
 
@@ -350,10 +350,10 @@ def render_rarest_bracket(
     processed_root = processed_root or processed_dir(season)
     output_root = output_root or output_dir(season)
     destination = destination or (output_root / f"most_unlikely_bracket_{season}.html")
-    favicon_url = pixel_basketball_icon_data_url()
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    favicon_tags = favicon_head_tags(destination)
 
     payload = _simulate_rarest_bracket(season=season, sims=sims, seed=seed, processed_root=processed_root, output_root=output_root)
-    destination.parent.mkdir(parents=True, exist_ok=True)
     json_path = destination.with_suffix(".json")
     json_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
@@ -391,7 +391,7 @@ def render_rarest_bracket(
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>{season} Most Unlikely Bracket</title>
-          <link rel="icon" type="image/svg+xml" href="{favicon_url}">
+          {favicon_tags}
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
