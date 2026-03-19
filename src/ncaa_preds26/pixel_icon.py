@@ -9,29 +9,12 @@ import zlib
 from .paths import APP_ROOT
 
 
-_PIXEL_ROWS = (
-    "................",
-    ".....dddddd.....",
-    "...ddoooooodd...",
-    "..dooooooooood..",
-    "..dooooodoooood.",
-    ".doooooodooooood",
-    ".doooooodooooood",
-    ".dddddoodddddddo",
-    ".doooooodooooood",
-    ".doooooodooooood",
-    ".doooooddooooood",
-    "..doooooooooood.",
-    "..dooooooooood..",
-    "...ddoooooodd...",
-    ".....dddddd.....",
-    "................",
-)
-
-_PIXEL_COLORS = {
-    "d": "#18293D",
-    "o": "#E88A2E",
-}
+_SPRITE_SIZE = 16
+_BORDER_COLOR = "#18293D"
+_SEAM_COLOR = "#6A3213"
+_FILL_COLOR = "#E88A2E"
+_HIGHLIGHT_COLOR = "#F4B35D"
+_SHADOW_COLOR = "#CF6C1E"
 
 
 @dataclass(frozen=True)
@@ -45,10 +28,10 @@ class FaviconLinks:
 
 def pixel_basketball_icon_svg() -> str:
     rects: list[str] = []
-    for y, row in enumerate(_PIXEL_ROWS):
-        for x, pixel in enumerate(row):
-            color = _PIXEL_COLORS.get(pixel)
-            if color:
+    for y in range(_SPRITE_SIZE):
+        for x in range(_SPRITE_SIZE):
+            color = _pixel_color_at(x, y)
+            if color is not None:
                 rects.append(f'<rect x="{x}" y="{y}" width="1" height="1" fill="{color}"/>')
     return (
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" '
@@ -67,6 +50,33 @@ def _rgb_from_hex(hex_color: str) -> tuple[int, int, int]:
     return int(color[0:2], 16), int(color[2:4], 16), int(color[4:6], 16)
 
 
+def _pixel_color_at(x: int, y: int) -> str | None:
+    nx = ((x + 0.5) / _SPRITE_SIZE) * 2 - 1
+    ny = ((y + 0.5) / _SPRITE_SIZE) * 2 - 1
+    distance = (nx * nx + ny * ny) ** 0.5
+
+    if distance > 0.93:
+        return None
+    if distance > 0.79:
+        return _BORDER_COLOR
+
+    color = _FILL_COLOR
+    if nx + ny < -0.42 and distance < 0.75:
+        color = _HIGHLIGHT_COLOR
+    elif nx - ny > 0.58 and distance < 0.77:
+        color = _SHADOW_COLOR
+
+    curve_offset = 0.30 + (0.22 * (abs(ny) ** 1.55))
+    seam_band = 0.055
+    horizontal_seam = abs(ny + 0.0625) < 0.04 and abs(nx) < 0.8 and distance < 0.77
+    left_seam = abs(nx + curve_offset) < seam_band and abs(ny) < 0.74 and distance < 0.77
+    right_seam = abs(nx - curve_offset) < seam_band and abs(ny) < 0.74 and distance < 0.77
+
+    if horizontal_seam or left_seam or right_seam:
+        return _SEAM_COLOR
+    return color
+
+
 def _png_chunk(chunk_type: bytes, payload: bytes) -> bytes:
     checksum = zlib.crc32(chunk_type + payload) & 0xFFFFFFFF
     return pack(">I", len(payload)) + chunk_type + payload + pack(">I", checksum)
@@ -78,13 +88,11 @@ def pixel_basketball_icon_png(size: int) -> bytes:
 
     raw_rows: list[bytes] = []
     for y in range(size):
-        source_y = (y * len(_PIXEL_ROWS)) // size
-        source_row = _PIXEL_ROWS[source_y]
+        source_y = (y * _SPRITE_SIZE) // size
         row = bytearray([0])
         for x in range(size):
-            source_x = (x * len(source_row)) // size
-            pixel = source_row[source_x]
-            color = _PIXEL_COLORS.get(pixel)
+            source_x = (x * _SPRITE_SIZE) // size
+            color = _pixel_color_at(source_x, source_y)
             if color is None:
                 row.extend((0, 0, 0, 0))
                 continue
