@@ -188,3 +188,7 @@ def favicon_head_tags(destination: Path, theme_color: str = "#18293D") -> str:
             f'<link rel="apple-touch-icon" sizes="180x180" href="{links.apple_touch}">',
         )
     )
+
+
+def vercel_analytics_script_tag() -> str:
+    return '<script defer src="/_vercel/insights/script.js"></script>'

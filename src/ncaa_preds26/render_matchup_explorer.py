@@ -8,7 +8,7 @@ import pandas as pd
 
 from .constants import DEFAULT_SEASON
 from .paths import output_dir, processed_dir
-from .pixel_icon import favicon_head_tags
+from .pixel_icon import favicon_head_tags, vercel_analytics_script_tag
 
 
 ROUND_LABELS = {
@@ -246,6 +246,7 @@ def render_matchup_explorer(
     x_handle = "@jam0xb797fd"
     destination.parent.mkdir(parents=True, exist_ok=True)
     favicon_tags = favicon_head_tags(destination)
+    analytics_tag = vercel_analytics_script_tag()
 
     document = dedent(
         f"""
@@ -256,6 +257,7 @@ def render_matchup_explorer(
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>{season} Bracket Lab</title>
           {favicon_tags}
+          {analytics_tag}
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">

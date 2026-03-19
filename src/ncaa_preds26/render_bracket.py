@@ -10,7 +10,7 @@ import pandas as pd
 
 from .constants import DEFAULT_SEASON
 from .paths import output_dir, processed_dir
-from .pixel_icon import favicon_head_tags
+from .pixel_icon import favicon_head_tags, vercel_analytics_script_tag
 
 
 REGION_CLASSES = {
@@ -395,6 +395,7 @@ def _build_document(
     top_seed = leaderboard[0]
     season_label = escape(str(season))
     efficiency_note = "Torvik fallback" if efficiency_source.lower() == "torvik" else efficiency_source.title()
+    analytics_tag = vercel_analytics_script_tag()
     return dedent(
         f"""
         <!doctype html>
@@ -404,6 +405,7 @@ def _build_document(
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>{season_label} Monte Carlo Arcade Bracket</title>
           {favicon_tags}
+          {analytics_tag}
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">

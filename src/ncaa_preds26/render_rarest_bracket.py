@@ -12,7 +12,7 @@ import pandas as pd
 
 from .constants import DEFAULT_SEASON, FINAL_FOUR_PAIRINGS, REGIONS
 from .paths import output_dir, processed_dir
-from .pixel_icon import favicon_head_tags
+from .pixel_icon import favicon_head_tags, vercel_analytics_script_tag
 from .simulate import _win_probability
 
 
@@ -352,6 +352,7 @@ def render_rarest_bracket(
     destination = destination or (output_root / f"most_unlikely_bracket_{season}.html")
     destination.parent.mkdir(parents=True, exist_ok=True)
     favicon_tags = favicon_head_tags(destination)
+    analytics_tag = vercel_analytics_script_tag()
 
     payload = _simulate_rarest_bracket(season=season, sims=sims, seed=seed, processed_root=processed_root, output_root=output_root)
     json_path = destination.with_suffix(".json")
@@ -392,6 +393,7 @@ def render_rarest_bracket(
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>{season} Most Unlikely Bracket</title>
           {favicon_tags}
+          {analytics_tag}
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
